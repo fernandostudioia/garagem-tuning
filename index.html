@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garagem Tuning Para Colorir</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ╔══════════════════════════════════════════════════════╗
+   ║  MOBILE FIRST — base styles = mobile                 ║
+   ║  @media(min-width:600px) = tablet / desktop          ║
+   ╚══════════════════════════════════════════════════════╝ */
+
+:root {
+  --blue:#0066FF; --red:#FF3B30; --gold:#F2D15A;
+  --black:#1A1A1A; --cream:#F7F4EE;
+  --green:#00C244; --blue-dk:#0044CC; --gold-dk:#D4A800;
+  --ph:#DDD8CF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
+
+/* ── IMAGE SLOTS ──────────────────────────────────────── */
+.img-slot{
+  background:var(--ph);
+  border-radius:12px;
+  overflow:hidden;
+  position:relative; /* âncora para o img absoluto */
+}
+/* label placeholder enquanto a imagem não carrega */
+.img-slot::after{
+  content:attr(data-label);
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-size:10px; font-weight:600;
+  color:rgba(0,0,0,.3); text-transform:uppercase;
+  letter-spacing:1px; pointer-events:none;
+  white-space:nowrap;
+}
+/* img preenche 100% do slot — position:absolute é o método cross-browser confiável */
+.img-slot img{
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+  z-index:1;
+}
+.img-hero  { width:100%; aspect-ratio:4/3; border-radius:16px;
+             box-shadow:0 0 0 2px rgba(242,209,90,.3),0 20px 50px rgba(0,102,255,.4) }
+.img-step  { width:120px; height:120px; border-radius:14px; margin:0 auto }
+.img-bonus { width:100%; aspect-ratio:16/9; border-radius:10px }
+.img-plan  { width:100%; aspect-ratio:4/3; border-radius:0 }
+.img-depo  { width:100%; aspect-ratio:9/11; border-radius:0 }
+
+/* ── URGENCY ──────────────────────────────────────────── */
+.urg{
+  background:var(--red); color:white; text-align:center;
+  padding:12px 16px;
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:13px; letter-spacing:1px; text-transform:uppercase;
+  position:sticky; top:0; z-index:100;
+  line-height:1.4;
+}
+
+/* ── HERO ─────────────────────────────────────────────── */
+.hero{background:#0d0d1a; padding:40px 16px 48px; text-align:center}
+.h-badge{
+  display:inline-block; background:var(--gold); color:var(--black);
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:11px; letter-spacing:2px; text-transform:uppercase;
+  padding:5px 16px; border-radius:100px; margin-bottom:18px;
+}
+.hero h1{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:clamp(38px,11vw,72px); color:white;
+  text-transform:uppercase; line-height:.95; margin-bottom:4px;
+}
+.hero h1 em{color:var(--blue); font-style:normal; display:block}
+.hero h1 .g{color:var(--gold)}
+.hero-img-wrap{max-width:380px; margin:28px auto 24px}
+.h-tag{font-size:17px; color:rgba(255,255,255,.65); margin-bottom:28px; line-height:1.5}
+.h-tag strong{color:var(--gold)}
+
+/* ── BUTTONS — full width on mobile ──────────────────── */
+.btn-green{
+  display:block; width:100%; max-width:380px; margin:0 auto;
+  text-align:center; background:linear-gradient(135deg,#00C244,#009933);
+  color:white; font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:20px; text-transform:uppercase; letter-spacing:1.5px;
+  padding:17px 24px; border-radius:8px; text-decoration:none;
+  border:none; cursor:pointer; box-shadow:0 6px 24px rgba(0,194,68,.35);
+}
+.btn-gold{
+  display:block; width:100%; max-width:380px; margin:0 auto;
+  text-align:center; background:linear-gradient(135deg,var(--gold),var(--gold-dk));
+  color:var(--black); font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:20px; text-transform:uppercase; letter-spacing:1.5px;
+  padding:17px 24px; border-radius:8px; text-decoration:none;
+  border:none; cursor:pointer; box-shadow:0 6px 24px rgba(242,209,90,.35);
+}
+.cta-note{color:rgba(255,255,255,.4); font-size:13px; margin-top:10px; text-align:center}
+
+/* ── STRIPE ───────────────────────────────────────────── */
+.stripe{height:6px; background:repeating-linear-gradient(90deg,
+  var(--blue) 0,var(--blue) 25px, var(--red) 25px,var(--red) 50px,
+  var(--gold) 50px,var(--gold) 75px, var(--black) 75px,var(--black) 100px)}
+
+/* ── SECTION BASE ─────────────────────────────────────── */
+.s{padding:40px 16px}
+.c{max-width:760px; margin:0 auto}
+.sh{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:clamp(26px,7vw,44px); text-transform:uppercase;
+  text-align:center; margin-bottom:8px; line-height:1.05;
+}
+.ss{font-size:15px; color:#777; text-align:center; margin-bottom:28px; line-height:1.55}
+
+/* ── 2 — CHIPS ────────────────────────────────────────── */
+.chips{display:flex; flex-wrap:wrap; justify-content:center; gap:8px; max-width:640px; margin:0 auto}
+.chip{
+  display:flex; align-items:center; gap:7px;
+  background:white; border-radius:100px;
+  padding:9px 14px; font-size:13px; font-weight:600;
+  box-shadow:0 2px 8px rgba(0,0,0,.07); border:1.5px solid #eee;
+}
+.chip span{font-size:16px}
+
+/* ── 3 — O QUE RECEBE ─────────────────────────────────── */
+/* mobile: 1 col */
+.rcv-grid{display:grid; grid-template-columns:1fr; gap:10px; max-width:640px; margin:0 auto}
+.rcv{background:var(--cream); border-radius:10px; padding:16px; border-left:3px solid var(--blue)}
+.rcv-t{
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:15px; text-transform:uppercase; color:var(--blue); margin-bottom:4px;
+}
+.rcv p{font-size:13px; color:#555; line-height:1.5}
+
+/* ── 4 — IDEAL ────────────────────────────────────────── */
+.ideal-list{list-style:none; max-width:520px; margin:0 auto}
+.ideal-list li{
+  background:white; border-radius:8px; padding:12px 16px; margin-bottom:8px;
+  font-size:15px; font-weight:500; display:flex; align-items:center;
+  gap:10px; border-left:3px solid var(--blue);
+}
+
+/* ── 5 — COMO FUNCIONA ────────────────────────────────── */
+/* mobile: 1 col stacked */
+.steps-grid{
+  display:grid; grid-template-columns:1fr; gap:24px;
+  max-width:640px; margin:0 auto; text-align:center;
+}
+.step-cell{display:flex; flex-direction:column; align-items:center; gap:12px}
+.step-lbl{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:15px; color:var(--blue); text-transform:uppercase; letter-spacing:1px;
+}
+.step-desc{font-size:14px; color:#444; line-height:1.55; max-width:260px; margin:0 auto}
+
+/* ── 6 — REFORÇO ──────────────────────────────────────── */
+.rf-t{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:clamp(26px,7vw,52px); text-transform:uppercase;
+  color:white; max-width:580px; margin:0 auto 24px; line-height:1.05;
+}
+.rf-t .g{color:var(--gold)}
+
+/* ── 7 — BÔNUS ────────────────────────────────────────── */
+/* mobile: 1 col */
+.b-badge{
+  display:inline-block; background:var(--black); color:var(--gold);
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:13px; text-transform:uppercase; letter-spacing:2px;
+  padding:8px 22px; border-radius:100px; margin-bottom:24px;
+}
+.bonus-grid{display:grid; grid-template-columns:1fr; gap:12px; max-width:660px; margin:0 auto}
+.bcard{background:white; border-radius:14px; padding:0; overflow:hidden}
+.bcard-body{padding:16px 18px 18px}
+.bt{
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:15px; text-transform:uppercase; margin-bottom:4px;
+}
+.bd{font-size:13px; color:#666; line-height:1.45}
+.bv{display:inline-block; color:var(--red); font-size:12px; font-weight:700; margin-top:8px}
+
+/* ── 8 — PLANOS ───────────────────────────────────────── */
+/* mobile: 1 col — Completo shown first via order */
+.plans{
+  display:grid; grid-template-columns:1fr; gap:0;
+  max-width:640px; margin:0 auto; align-items:start;
+}
+.plan-b{
+  background:white; border-radius:14px; border:2px solid #e0e0e0;
+  overflow:hidden;
+  order:2; /* Basic shows second on mobile */
+  margin-top:28px; /* spacing after Complete */
+}
+.plan-c{
+  background:var(--black); border-radius:14px; border:2px solid var(--gold);
+  overflow:hidden; position:relative;
+  order:1; /* Recommended shows first on mobile */
+  margin-top:18px; /* space for badge */
+}
+.plan-body{padding:18px 20px 22px}
+.p-rec{
+  position:absolute; top:-1px; left:50%; transform:translateX(-50%);
+  background:var(--red); color:white;
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:12px; text-transform:uppercase; letter-spacing:1px;
+  padding:6px 20px; border-radius:0 0 10px 10px;
+  white-space:nowrap; z-index:2;
+}
+.pn{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:20px; text-transform:uppercase; margin-bottom:14px;
+}
+.plan-b .pn{color:var(--black)} .plan-c .pn{color:var(--gold)}
+.pi{list-style:none; margin-bottom:18px}
+.pi li{
+  font-size:13px; padding:7px 0; border-bottom:1px solid rgba(0,0,0,.06);
+  display:flex; gap:8px; align-items:flex-start;
+}
+.plan-c .pi li{color:rgba(255,255,255,.8); border-color:rgba(255,255,255,.08)}
+.pi li:last-child{border-bottom:none}
+.fr{font-size:13px; color:#aaa; text-decoration:line-through}
+.plan-c .fr{color:rgba(255,255,255,.3)}
+.pr{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:52px; line-height:1; margin-bottom:4px;
+}
+.plan-b .pr{color:var(--green)} .plan-c .pr{color:var(--gold)}
+.ins{font-size:12px; color:#aaa; margin-bottom:16px}
+.plan-c .ins{color:rgba(255,255,255,.35)}
+.pbtn{
+  display:block; text-align:center; width:100%;
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:17px; text-transform:uppercase; letter-spacing:1px;
+  padding:14px; border-radius:7px; text-decoration:none;
+  cursor:pointer; border:none;
+}
+.pb-b{background:#f0f0f0; color:var(--black)}
+.pb-c{background:linear-gradient(135deg,var(--gold),var(--gold-dk)); color:var(--black)}
+.p-note{font-size:11px; color:#bbb; text-align:center; margin-top:10px}
+
+/* ── 9 — GARANTIA ─────────────────────────────────────── */
+/* mobile: column */
+.gbox{
+  display:flex; flex-direction:column; gap:20px; align-items:center;
+  text-align:center; max-width:560px; margin:0 auto;
+  background:white; border-radius:14px; padding:28px 20px;
+  box-shadow:0 2px 16px rgba(0,0,0,.07);
+}
+.gseal{
+  flex-shrink:0; width:100px; height:100px;
+  background:linear-gradient(135deg,#FFD700,#B8860B); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; text-align:center;
+}
+.gd{font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:36px; color:white; line-height:1}
+.gl{
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:9px; color:rgba(255,255,255,.85);
+  text-transform:uppercase; letter-spacing:.5px; line-height:1.3;
+}
+.gtxt h3{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:22px; text-transform:uppercase; margin-bottom:7px;
+}
+.gtxt p{font-size:14px; color:#555; line-height:1.65}
+
+/* ── 10 — DEPOIMENTOS ─────────────────────────────────── */
+/* mobile: 1 col */
+.tgrid{
+  display:grid; grid-template-columns:1fr; gap:14px;
+  max-width:760px; margin:0 auto 32px;
+}
+.tcard{border-radius:14px; overflow:hidden; box-shadow:0 4px 18px rgba(0,0,0,.1)}
+.tcard .img-slot{border-radius:0}
+
+/* ── 11 — FAQ ─────────────────────────────────────────── */
+.flist{max-width:620px; margin:0 auto}
+.fi{border-bottom:1px solid #eee}
+.fq{
+  padding:15px 0; font-size:14px; font-weight:600; cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+}
+.ft{
+  width:24px; height:24px; background:var(--blue); color:white; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; font-weight:700; flex-shrink:0;
+  transition:transform .3s,background .3s;
+}
+.fa{display:none; font-size:13px; color:#555; line-height:1.7; padding:0 0 14px}
+.fi.open .fa{display:block}
+.fi.open .ft{transform:rotate(45deg); background:var(--red)}
+
+/* ── 12 — CTA FINAL ───────────────────────────────────── */
+.fcta{background:var(--black); text-align:center; padding:60px 16px}
+.fc-t{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:clamp(26px,8vw,52px); text-transform:uppercase;
+  color:white; margin-bottom:6px;
+}
+.fc-t .g{color:var(--gold)}
+.fc-fr{font-size:16px; color:rgba(255,255,255,.3); text-decoration:line-through; margin-bottom:4px}
+.fc-p{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:clamp(64px,18vw,88px); color:var(--gold); line-height:1; margin-bottom:6px;
+}
+.fc-i{font-size:13px; color:rgba(255,255,255,.35); margin-bottom:28px}
+.fc-chips{
+  margin-top:16px; color:rgba(255,255,255,.3); font-size:12px;
+  display:flex; justify-content:center; gap:12px; flex-wrap:wrap;
+}
+
+/* urgency pricing label */
+.urglabel{
+  display:inline-block; background:var(--red); color:white;
+  font-family:'Barlow Condensed',sans-serif; font-weight:700;
+  font-size:12px; text-transform:uppercase; letter-spacing:1.5px;
+  padding:6px 18px; border-radius:100px;
+}
+
+/* ── MODAL ────────────────────────────────────────────── */
+.modal-overlay{
+  display:none; position:fixed; inset:0; z-index:999;
+  background:rgba(0,0,0,.82);
+  align-items:center; justify-content:center;
+  padding:16px;
+  /* blur background for premium feel */
+  backdrop-filter:blur(3px);
+}
+.modal-overlay.active{ display:flex }
+.modal-box{
+  background:white; border-radius:18px;
+  width:100%; max-width:420px;
+  overflow:hidden;
+  box-shadow:0 24px 80px rgba(0,0,0,.5);
+  position:relative;
+  animation:slideUp .3s ease;
+}
+@keyframes slideUp{
+  from{transform:translateY(40px);opacity:0}
+  to  {transform:translateY(0);opacity:1}
+}
+/* gold top accent bar */
+.modal-box::before{
+  content:''; display:block; height:5px;
+  background:linear-gradient(90deg,var(--blue),var(--gold),var(--red));
+}
+.modal-close{
+  position:absolute; top:14px; right:16px;
+  width:28px; height:28px; border-radius:50%;
+  background:#f0f0f0; border:none; cursor:pointer;
+  font-size:16px; color:#666;
+  display:flex; align-items:center; justify-content:center;
+  line-height:1; z-index:2;
+}
+.modal-close:hover{ background:#e0e0e0 }
+
+.modal-body{ padding:20px 22px 24px }
+
+.modal-badge{
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--red); color:white;
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:12px; text-transform:uppercase; letter-spacing:1.5px;
+  padding:5px 14px; border-radius:100px; margin-bottom:14px;
+}
+.modal-h{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:clamp(22px,6vw,28px); text-transform:uppercase;
+  color:var(--black); line-height:1.05; margin-bottom:8px;
+}
+.modal-h .g{ color:var(--gold) }
+.modal-h .r{ color:var(--red) }
+.modal-sub{
+  font-size:14px; color:#555; line-height:1.55; margin-bottom:16px;
+}
+.modal-sub strong{ color:var(--black) }
+
+/* compact benefits */
+.modal-items{ list-style:none; margin-bottom:16px }
+.modal-items li{
+  font-size:13px; color:var(--black); padding:6px 0;
+  border-bottom:1px solid #f0f0f0;
+  display:flex; gap:8px; align-items:flex-start;
+  line-height:1.45;
+}
+.modal-items li:last-child{ border-bottom:none }
+.modal-items li.anchor{ color:#aaa; font-size:12px }
+
+/* price block */
+.modal-price-wrap{
+  background:var(--black); border-radius:12px;
+  padding:16px 18px; text-align:center; margin-bottom:18px;
+}
+.modal-price-from{
+  font-size:13px; color:rgba(255,255,255,.35);
+  text-decoration:line-through; margin-bottom:2px;
+}
+.modal-price{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:58px; color:var(--gold); line-height:1;
+}
+.modal-price-inst{ font-size:12px; color:rgba(255,255,255,.35); margin-top:2px }
+.modal-economy{
+  display:inline-block; background:rgba(242,209,90,.15);
+  color:var(--gold); font-size:12px; font-weight:700;
+  padding:4px 12px; border-radius:6px; margin-top:8px;
+}
+
+/* modal CTAs */
+.modal-cta{
+  display:block; width:100%; text-align:center;
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:18px; text-transform:uppercase; letter-spacing:1.5px;
+  padding:16px; border-radius:8px; text-decoration:none;
+  border:none; cursor:pointer;
+  background:linear-gradient(135deg,#00C244,#009933);
+  color:white; box-shadow:0 6px 20px rgba(0,194,68,.35);
+  margin-bottom:12px;
+}
+.modal-decline{
+  display:block; text-align:center;
+  font-size:12px; color:#aaa; text-decoration:none;
+  padding:4px; cursor:pointer; border:none; background:none;
+  width:100%; line-height:1.5;
+}
+.modal-decline:hover{ color:#888 }
+
+/* ╔══════════════════════════════════════════════════════╗
+   ║  DESKTOP  min-width: 600px                           ║
+   ╚══════════════════════════════════════════════════════╝ */
+@media(min-width:600px){
+
+  /* Larger section padding */
+  .s{ padding:52px 20px }
+  .hero{ padding:52px 20px 56px }
+  .fcta{ padding:72px 20px }
+
+  /* Restore inline buttons */
+  .btn-green,.btn-gold{
+    display:inline-block; width:auto; max-width:none;
+  }
+
+  /* 2-column grids */
+  .rcv-grid   { grid-template-columns:1fr 1fr; gap:12px }
+  .steps-grid { grid-template-columns:1fr 1fr; gap:32px }
+  .bonus-grid { grid-template-columns:1fr 1fr; gap:14px }
+  .tgrid      { grid-template-columns:1fr 1fr; gap:16px }
+
+  /* Plans: 2-col, restore natural order */
+  .plans      { grid-template-columns:1fr 1fr; gap:16px }
+  .plan-b     { order:initial; margin-top:0 }
+  .plan-c     { order:initial; margin-top:0 }
+
+  /* Badge repositioned for 2-col layout */
+  .p-rec      { top:-14px; left:50%; transform:translateX(-50%);
+                border-radius:100px; padding:5px 18px; }
+  .plan-c     { padding-top:0 }
+
+  /* Guarantee row layout */
+  .gbox{ flex-direction:row; text-align:left; padding:28px 32px }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── URGENCY ─────────────────────────────────────── -->
+<div class="urg">⚡ OFERTA VÁLIDA APENAS HOJE — 08/06/2026</div>
+
+
+<!-- ─── 1. HERO ──────────────────────────────────────── -->
+<section class="hero">
+  <div class="c" style="max-width:500px">
+
+    <div class="h-badge">✦ COLEÇÃO EXCLUSIVA 2026</div>
+
+    <h1>
+      +101 Carros Tunados<br>
+      <em>Para Imprimir</em>
+      <span class="g">e Colorir</span>
+    </h1>
+
+    <!--
+      ══════════════════════════════════
+      MOCKUP_HERO.png — 760 × 570 px
+      ══════════════════════════════════
+    -->
+    <div class="hero-img-wrap">
+      <div class="img-slot img-hero" data-label="MOCKUP_HERO.png">
+        <img src="MOCKUP_HERO.png" alt="Garagem Tuning Para Colorir — +101 Carros">
+      </div>
+    </div>
+
+    <p class="h-tag">Baixe agora. Imprima em casa.<br><strong>Diversão garantida.</strong></p>
+    <a href="#planos" class="btn-green">🏁 QUERO A COLEÇÃO AGORA</a>
+    <div class="cta-note">⚡ Acesso imediato no WhatsApp e e-mail</div>
+
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+
+<!-- ─── 2. BENEFÍCIOS ────────────────────────────────── -->
+<section class="s" style="background:var(--cream);padding-top:28px;padding-bottom:28px">
+  <div class="c">
+    <div class="chips">
+      <div class="chip"><span>📄</span> PDF pronto para imprimir</div>
+      <div class="chip"><span>♾️</span> Impressão ilimitada</div>
+      <div class="chip"><span>⚡</span> Acesso imediato</div>
+      <div class="chip"><span>🏎️</span> +281 arquivos automotivos</div>
+      <div class="chip"><span>🔒</span> Acesso vitalício</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 3. O QUE RECEBE ──────────────────────────────── -->
+<section class="s" style="background:white">
+  <div class="c">
+    <h2 class="sh">O Que Você Recebe</h2>
+    <p class="ss">Tudo em um único PDF — baixe, imprima e use na hora</p>
+    <div class="rcv-grid">
+      <div class="rcv">
+        <div class="rcv-t">Coleção Completa em PDF</div>
+        <p>+101 carros tunados num único arquivo organizado</p>
+      </div>
+      <div class="rcv">
+        <div class="rcv-t">Pronto Para Imprimir</div>
+        <p>Folha A4. Qualquer impressora. Em casa ou na gráfica.</p>
+      </div>
+      <div class="rcv">
+        <div class="rcv-t">Acesso Imediato</div>
+        <p>Receba no celular, tablet ou computador. Disponível 24h.</p>
+      </div>
+      <div class="rcv">
+        <div class="rcv-t">Impressão Ilimitada</div>
+        <p>Imprima, recomece e descubra novos modelos sempre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 4. IDEAL PARA QUEM ───────────────────────────── -->
+<section class="s" style="background:var(--cream)">
+  <div class="c">
+    <h2 class="sh">Ideal Para Quem Quer</h2>
+    <ul class="ideal-list">
+      <li>✅ Manter a criança entretida longe das telas</li>
+      <li>✅ Ter uma coleção de carros pronta para qualquer momento</li>
+      <li>✅ Dar um presente diferente para quem ama carros</li>
+      <li>✅ Usar em viagem, sala de espera ou fim de semana</li>
+      <li>✅ Impressão ilimitada — sem frete, sem espera</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ─── 5. COMO FUNCIONA ─────────────────────────────── -->
+<!--
+  ══════════════════════════════════════════════════
+  MOCKUP_PASSO_1.png  MOCKUP_PASSO_2.png
+  MOCKUP_PASSO_3.png  MOCKUP_PASSO_4.png
+  240 × 240 px cada
+  ══════════════════════════════════════════════════
+-->
+<section class="s" style="background:white">
+  <div class="c">
+    <h2 class="sh">Como Funciona</h2>
+    <div class="steps-grid">
+
+      <div class="step-cell">
+        <div class="img-slot img-step" data-label="Passo 1">
+          <img src="MOCKUP_PASSO_1.png" alt="Passo 1">
+        </div>
+        <div class="step-lbl">Passo 1</div>
+        <p class="step-desc">Compre e receba o link no WhatsApp e e-mail na hora</p>
+      </div>
+
+      <div class="step-cell">
+        <div class="img-slot img-step" data-label="Passo 2">
+          <img src="MOCKUP_PASSO_2.png" alt="Passo 2">
+        </div>
+        <div class="step-lbl">Passo 2</div>
+        <p class="step-desc">Abra o PDF e escolha o carro favorito da coleção</p>
+      </div>
+
+      <div class="step-cell">
+        <div class="img-slot img-step" data-label="Passo 3">
+          <img src="MOCKUP_PASSO_3.png" alt="Passo 3">
+        </div>
+        <div class="step-lbl">Passo 3</div>
+        <p class="step-desc">Imprima em folha A4 em qualquer impressora</p>
+      </div>
+
+      <div class="step-cell">
+        <div class="img-slot img-step" data-label="Passo 4">
+          <img src="MOCKUP_PASSO_4.png" alt="Passo 4">
+        </div>
+        <div class="step-lbl">Passo 4</div>
+        <p class="step-desc">Separe os lápis de cor e comece a diversão imediatamente</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+
+<!-- ─── 6. BLOCO DE REFORÇO ──────────────────────────── -->
+<section class="s" style="background:var(--black);text-align:center">
+  <div class="c">
+    <h2 class="rf-t">+281 Arquivos Automotivos.<br><span class="g">Baixa. Imprime. Diverte.</span></h2>
+    <a href="#planos" class="btn-gold">🏁 QUERO MINHA COLEÇÃO</a>
+  </div>
+</section>
+
+
+<!-- ─── 7. BÔNUS ─────────────────────────────────────── -->
+<!--
+  ══════════════════════════════════════════════════
+  MOCKUP_BONUS_1.png  MOCKUP_BONUS_2.png
+  MOCKUP_BONUS_3.png  MOCKUP_BONUS_4.png
+  640 × 360 px (16:9) cada
+  ══════════════════════════════════════════════════
+-->
+<section class="s" style="background:var(--gold);text-align:center">
+  <div class="c">
+    <h2 class="sh">No Plano Completo Você Ainda Ganha</h2>
+    <div class="b-badge">🎁 +4 BÔNUS EXCLUSIVOS</div>
+    <div class="bonus-grid">
+
+      <div class="bcard">
+        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_1.png">
+          <img src="MOCKUP_BONUS_1.png" alt="+50 Supercarros">
+        </div>
+        <div class="bcard-body">
+          <div class="bt">+50 Supercarros Exclusivos</div>
+          <p class="bd">Ferrari, Lamborghini, McLaren, Bugatti</p>
+          <span class="bv">Valor: R$27</span>
+        </div>
+      </div>
+
+      <div class="bcard">
+        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_2.png">
+          <img src="MOCKUP_BONUS_2.png" alt="+50 Carros JDM">
+        </div>
+        <div class="bcard-body">
+          <div class="bt">+50 Carros JDM Lendários</div>
+          <p class="bd">Skyline, Supra, RX7, AE86, Evo, WRX</p>
+          <span class="bv">Valor: R$27</span>
+        </div>
+      </div>
+
+      <div class="bcard">
+        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_3.png">
+          <img src="MOCKUP_BONUS_3.png" alt="+50 Rebaixados BR">
+        </div>
+        <div class="bcard-body">
+          <div class="bt">+50 Carros Rebaixados Brasil</div>
+          <p class="bd">Cultura automotiva brasileira para colorir</p>
+          <span class="bv">Valor: R$27</span>
+        </div>
+      </div>
+
+      <div class="bcard">
+        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_4.png">
+          <img src="MOCKUP_BONUS_4.png" alt="+30 Pôsteres">
+        </div>
+        <div class="bcard-body">
+          <div class="bt">+30 Pôsteres Automotivos</div>
+          <p class="bd">Arte decorativa para imprimir e expor no quarto</p>
+          <span class="bv">Valor: R$17</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+
+<!-- ─── 8. OFERTA / PLANOS ───────────────────────────── -->
+<!--
+  ══════════════════════════════════════════════════
+  MOCKUP_BASICO.png    — 480 × 360 px
+  MOCKUP_COMPLETO.png  — 480 × 360 px
+  ══════════════════════════════════════════════════
+-->
+<section class="s" style="background:var(--cream)" id="planos">
+  <div class="c">
+    <div style="text-align:center;margin-bottom:12px">
+      <span class="urglabel">⏱️ ÚLTIMA CHANCE — ENCERRA HOJE</span>
+    </div>
+    <h2 class="sh">Escolha Seu Plano</h2>
+
+    <div class="plans">
+
+      <!-- COMPLETO — order:1 → aparece primeiro no mobile -->
+      <div class="plan-c">
+        <div class="p-rec">⚡ RECOMENDADO</div>
+        <div class="img-slot img-plan" data-label="MOCKUP_COMPLETO.png">
+          <img src="MOCKUP_COMPLETO.png" alt="Plano Completo">
+        </div>
+        <div class="plan-body">
+          <div class="pn">Plano Completo</div>
+          <ul class="pi">
+            <li>✅ +101 Carros Tunados</li>
+            <li>🎁 +50 Supercarros Exclusivos</li>
+            <li>🎁 +50 Carros JDM Lendários</li>
+            <li>🎁 +50 Carros Rebaixados Brasil</li>
+            <li>🎁 +30 Pôsteres Automotivos</li>
+          </ul>
+          <div class="fr">de R$97,00 por:</div>
+          <div class="pr">R$27</div>
+
+          <a href="https://ggcheckout.app/checkout/v3/GxJfq0cb9WwMCqYOzTvB" target="_blank" class="pbtn pb-c">🏁 QUERO O COMPLETO</a>
+        </div>
+      </div>
+
+      <!-- BÁSICO — order:2 → aparece segundo no mobile -->
+      <div class="plan-b">
+        <div class="img-slot img-plan" data-label="MOCKUP_BASICO.png">
+          <img src="MOCKUP_BASICO.png" alt="Plano Básico">
+        </div>
+        <div class="plan-body">
+          <div class="pn">Plano Básico</div>
+          <ul class="pi">
+            <li>✅ +101 Carros Tunados Para Colorir</li>
+          </ul>
+          <div class="fr">de R$47,00 por:</div>
+          <div class="pr">R$10</div>
+
+          <a href="#" class="pbtn pb-b" onclick="openModal(event)">QUERO O BÁSICO</a>
+          <div class="p-note">92% escolhem o Completo ↑</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 9. GARANTIA ──────────────────────────────────── -->
+<section class="s" style="background:var(--cream)">
+  <div class="c">
+    <div class="gbox">
+      <div class="gseal">
+        <div class="gd">15</div>
+        <div class="gl">DIAS<br>GARANTIA</div>
+      </div>
+      <div class="gtxt">
+        <h3>Garantia de 15 Dias</h3>
+        <p>Se não gostar por qualquer motivo, devolvemos 100% do valor. Sem perguntas, sem burocracia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+
+<!-- ─── 10. DEPOIMENTOS ──────────────────────────────── -->
+<!--
+  Imagens completas — texto já embutido no mockup.
+  ══════════════════════════════════════════════════
+  DEPO_1.png … DEPO_6.png
+  Proporção: igual ao Mockup_Prova_social_1.png
+  Grade: 2 col desktop / 1 col mobile
+  ══════════════════════════════════════════════════
+-->
+<section class="s" style="background:var(--cream)">
+  <div class="c">
+    <h2 class="sh">Quem Baixou Aprovou</h2>
+    <div class="tgrid" style="margin-top:24px">
+
+      <div class="tcard">
+        <div class="img-slot img-depo" data-label="DEPO_1.png">
+          <img src="DEPO_1.png" alt="Depoimento 1">
+        </div>
+      </div>
+
+      <div class="tcard">
+        <div class="img-slot img-depo" data-label="DEPO_2.png">
+          <img src="DEPO_2.png" alt="Depoimento 2">
+        </div>
+      </div>
+
+      <div class="tcard">
+        <div class="img-slot img-depo" data-label="DEPO_3.png">
+          <img src="DEPO_3.png" alt="Depoimento 3">
+        </div>
+      </div>
+
+      <div class="tcard">
+        <div class="img-slot img-depo" data-label="DEPO_4.png">
+          <img src="DEPO_4.png" alt="Depoimento 4">
+        </div>
+      </div>
+
+      <div class="tcard">
+        <div class="img-slot img-depo" data-label="DEPO_5.png">
+          <img src="DEPO_5.png" alt="Depoimento 5">
+        </div>
+      </div>
+
+      <div class="tcard">
+        <div class="img-slot img-depo" data-label="DEPO_6.png">
+          <img src="DEPO_6.png" alt="Depoimento 6">
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center">
+      <a href="#planos" class="btn-green">🏁 QUERO A COLEÇÃO AGORA</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 11. FAQ ───────────────────────────────────────── -->
+<section class="s" style="background:white">
+  <div class="c">
+    <h2 class="sh" style="margin-bottom:24px">Dúvidas</h2>
+    <div class="flist">
+      <div class="fi open">
+        <div class="fq" onclick="f(this)">Como vou receber? <div class="ft">+</div></div>
+        <div class="fa">Imediatamente após o pagamento — link no e-mail e WhatsApp.</div>
+      </div>
+      <div class="fi">
+        <div class="fq" onclick="f(this)">O material é físico? <div class="ft">+</div></div>
+        <div class="fa">Não. É 100% digital em PDF. Você imprime em casa quantas vezes quiser.</div>
+      </div>
+      <div class="fi">
+        <div class="fq" onclick="f(this)">Posso imprimir várias vezes? <div class="ft">+</div></div>
+        <div class="fa">Sim. Sem nenhum limite. Imprima, use e reimprima sempre que quiser.</div>
+      </div>
+      <div class="fi">
+        <div class="fq" onclick="f(this)">Para qual faixa de idade? <div class="ft">+</div></div>
+        <div class="fa">Crianças de 4 a 10 anos, especialmente apaixonadas por carros.</div>
+      </div>
+      <div class="fi">
+        <div class="fq" onclick="f(this)">Tem garantia? <div class="ft">+</div></div>
+        <div class="fa">Sim. 15 dias de garantia total. Reembolso imediato se não gostar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+
+<!-- ─── 12. CTA FINAL ────────────────────────────────── -->
+<section class="fcta">
+  <div class="c">
+    <h2 class="fc-t">+281 Arquivos Automotivos<br><span class="g">Prontos Para Colorir</span></h2>
+    <div class="fc-fr">de R$97,00</div>
+    <div class="fc-p">R$27</div>
+    <div class="fc-i">acesso vitalício — somente PIX</div>
+    <a href="#planos" class="btn-gold" style="font-size:20px;padding:18px 24px">🏁 QUERO A COLEÇÃO AGORA</a>
+    <div class="fc-chips">
+      <span>⚡ Acesso imediato</span>
+      <span>🔒 Pagamento seguro</span>
+      <span>↩️ Garantia 15 dias</span>
+      <span>♾️ Impressão ilimitada</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+  LINKS DE CHECKOUT — substitua os 3 links abaixo:
+  https://ggcheckout.app/checkout/v5/f1QqE95CXi0ZvgqHmY3W          → checkout R$10 (plano básico)
+  https://ggcheckout.app/checkout/v3/GxJfq0cb9WwMCqYOzTvB        → checkout R$27 (plano completo)
+  https://ggcheckout.app/checkout/v3/EcTsM4oN7ecQJRvKRi84   → checkout R$17 (completo c/ desconto modal)
+  ══════════════════════════════════════════════════════ -->
+
+<!-- ─── MODAL UPSELL ────────────────────────────────── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <div class="modal-box" role="dialog" aria-modal="true">
+
+    <button class="modal-close" onclick="closeModal()" aria-label="Fechar">✕</button>
+
+    <div class="modal-body">
+
+      <!-- Badge urgência -->
+      <div class="modal-badge">🚨 APARECE APENAS UMA VEZ</div>
+
+      <!-- Headline -->
+      <h2 class="modal-h">
+        Por <span class="g">R$7 a mais</span> você<br>
+        triplica a coleção.<br>
+        <span class="r">Vai deixar na mesa?</span>
+      </h2>
+
+      <!-- Sub -->
+      <p class="modal-sub">
+        Você já decidiu gastar <strong>R$10</strong>. Por apenas <strong>R$7 a mais</strong> — menos que um lanche — você sai com <strong>+281 arquivos automotivos</strong> completos.
+      </p>
+
+      <!-- Benefits -->
+      <ul class="modal-items">
+        <li class="anchor">✅ +101 Carros Tunados (já incluso no básico)</li>
+        <li>🎁 <strong>+50 Supercarros</strong> — Ferrari, Lambo, McLaren, Bugatti</li>
+        <li>🎁 <strong>+50 JDMs Lendários</strong> — Skyline, Supra, RX7, AE86</li>
+        <li>🎁 <strong>+50 Rebaixados Brasil</strong></li>
+        <li>🎁 <strong>+30 Pôsteres Automotivos</strong> para decorar o quarto</li>
+      </ul>
+
+      <!-- Price -->
+      <div class="modal-price-wrap">
+        <div class="modal-price-from">de R$27,00 por apenas:</div>
+        <div class="modal-price">R$17</div>
+
+        <div class="modal-economy">✅ Você economiza R$10,00</div>
+      </div>
+
+      <!-- CTA aceitar -->
+      <a href="https://ggcheckout.app/checkout/v3/EcTsM4oN7ecQJRvKRi84" target="_blank" class="modal-cta">
+        🏁 SIM, QUERO O COMPLETO POR R$17
+      </a>
+
+      <!-- Declinar — vai para checkout básico -->
+      <a href="https://ggcheckout.app/checkout/v5/f1QqE95CXi0ZvgqHmY3W" target="_blank" class="modal-decline">
+        Não, prefiro levar só os 101 carros por R$10 e deixar os bônus para trás →
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── FAQ ────────────────────────────────────────────── */
+function f(el){
+  const item=el.parentElement,open=item.classList.contains('open');
+  document.querySelectorAll('.fi').forEach(i=>i.classList.remove('open'));
+  if(!open)item.classList.add('open');
+}
+
+/* ── SCROLL SUAVE para #planos (fallback universal) ─── */
+document.querySelectorAll('a[href="#planos"]').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    var target=document.getElementById('planos');
+    if(target){
+      target.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+});
+
+/* ── MODAL ──────────────────────────────────────────── */
+function openModal(e){
+  e.preventDefault();
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+function closeOnOverlay(e){
+  if(e.target===document.getElementById('modalOverlay')) closeModal();
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape') closeModal();
+});
+</script>
+</body>
+</html>
