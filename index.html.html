@@ -467,6 +467,25 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
   .gbox{ flex-direction:row; text-align:left; padding:28px 32px }
 }
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1795841218255298');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
 </head>
 <body>
 
@@ -723,7 +742,8 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
           <div class="fr">de R$97,00 por:</div>
           <div class="pr">R$27</div>
 
-          <a href="https://ggcheckout.app/checkout/v3/GxJfq0cb9WwMCqYOzTvB" target="_blank" class="pbtn pb-c">🏁 QUERO O COMPLETO</a>
+          <a href="https://ggcheckout.app/checkout/v3/GxJfq0cb9WwMCqYOzTvB" target="_blank" class="pbtn pb-c"
+             onclick="fbq('track','InitiateCheckout',{value:27.00,currency:'BRL',content_name:'Plano Completo'})">🏁 QUERO O COMPLETO</a>
         </div>
       </div>
 
@@ -924,12 +944,14 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
       </div>
 
       <!-- CTA aceitar -->
-      <a href="https://ggcheckout.app/checkout/v3/EcTsM4oN7ecQJRvKRi84" target="_blank" class="modal-cta">
+      <a href="https://ggcheckout.app/checkout/v3/EcTsM4oN7ecQJRvKRi84" target="_blank" class="modal-cta"
+         onclick="fbq('track','InitiateCheckout',{value:17.00,currency:'BRL',content_name:'Plano Completo Desconto'})">
         🏁 SIM, QUERO O COMPLETO POR R$17
       </a>
 
       <!-- Declinar — vai para checkout básico -->
-      <a href="https://ggcheckout.app/checkout/v5/f1QqE95CXi0ZvgqHmY3W" target="_blank" class="modal-decline">
+      <a href="https://ggcheckout.app/checkout/v5/f1QqE95CXi0ZvgqHmY3W" target="_blank" class="modal-decline"
+         onclick="fbq('track','InitiateCheckout',{value:10.00,currency:'BRL',content_name:'Plano Basico'})">
         Não, prefiro levar só os 101 carros por R$10 e deixar os bônus para trás →
       </a>
 
@@ -961,6 +983,7 @@ function openModal(e){
   e.preventDefault();
   document.getElementById('modalOverlay').classList.add('active');
   document.body.style.overflow='hidden';
+  fbq('track','ViewContent',{content_name:'Modal Upsell R$17',value:17.00,currency:'BRL'});
 }
 function closeModal(){
   document.getElementById('modalOverlay').classList.remove('active');
