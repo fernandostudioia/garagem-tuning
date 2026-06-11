@@ -524,7 +524,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 <body>
 
 <!-- ─── URGENCY ─────────────────────────────────────── -->
-<div class="urg">⚡ OFERTA VÁLIDA APENAS HOJE — 08/06/2026</div>
+<div class="urg">⚡ OFERTA VÁLIDA APENAS HOJE — <span id="urg-date">08/06/2026</span></div>
 
 
 <!-- ─── 1. HERO ──────────────────────────────────────── -->
@@ -1080,6 +1080,16 @@ document.addEventListener('keydown',function(e){
   track.addEventListener('mouseleave', resume);
   track.addEventListener('touchstart', pause, {passive:true});
   track.addEventListener('touchend', resume);
+})();
+
+/* ── DATA DA URGÊNCIA — atualiza automaticamente todo dia ──
+   Sempre mostra a data de "hoje" no fuso de Brasília,
+   no formato DD/MM/AAAA. Não precisa editar manualmente. */
+(function(){
+  var el = document.getElementById('urg-date');
+  if(!el) return;
+  var hoje = new Date().toLocaleDateString('pt-BR', { timeZone:'America/Sao_Paulo' });
+  el.textContent = hoje;
 })();
 </script>
 </body>
