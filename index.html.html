@@ -195,14 +195,13 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
 .plan-b{
   background:white; border-radius:14px; border:2px solid #e0e0e0;
   overflow:hidden;
-  order:2; /* Basic shows second on mobile */
-  margin-top:28px; /* spacing after Complete */
+  order:1; /* Básico aparece primeiro no mobile */
 }
 .plan-c{
   background:var(--black); border-radius:14px; border:2px solid var(--gold);
   overflow:hidden; position:relative;
-  order:1; /* Recommended shows first on mobile */
-  margin-top:18px; /* space for badge */
+  order:2; /* Completo aparece depois no mobile */
+  margin-top:28px; /* espaço acima do card recomendado */
 }
 .plan-body{padding:18px 20px 22px}
 .p-rec{
@@ -243,7 +242,19 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
 }
 .pb-b{background:#f0f0f0; color:var(--black)}
 .pb-c{background:linear-gradient(135deg,var(--gold),var(--gold-dk)); color:var(--black)}
-.p-note{font-size:11px; color:#bbb; text-align:center; margin-top:10px}
+.p-note{
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  margin-top:14px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dk));
+  color:var(--black);
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:14px; text-transform:uppercase; letter-spacing:.5px;
+  padding:11px 16px; border-radius:8px;
+  box-shadow:0 4px 16px rgba(242,209,90,.45);
+}
+.p-note-arrow{ display:inline-block; font-size:18px; line-height:1; animation:bounceDown 1.2s infinite }
+@keyframes bounceDown{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(4px)} }
+@keyframes bounceLeft{ 0%,100%{transform:translateX(0) rotate(90deg)} 50%{transform:translateX(-4px) rotate(90deg)} }
 
 /* ── 9 — GARANTIA ─────────────────────────────────────── */
 /* mobile: column */
@@ -271,14 +282,30 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
 }
 .gtxt p{font-size:14px; color:#555; line-height:1.65}
 
-/* ── 10 — DEPOIMENTOS ─────────────────────────────────── */
-/* mobile: 1 col */
-.tgrid{
-  display:grid; grid-template-columns:1fr; gap:14px;
-  max-width:760px; margin:0 auto 32px;
+/* ── 10 — DEPOIMENTOS — CARROSSEL INFINITO ────────────── */
+.tcarousel-wrap{
+  overflow:hidden;
+  margin-bottom:28px;
+  /* fade nas bordas — reforça a sensação de loop contínuo */
+  -webkit-mask-image:linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  mask-image:linear-gradient(to right, transparent, black 6%, black 94%, transparent);
 }
-.tcard{border-radius:14px; overflow:hidden; box-shadow:0 4px 18px rgba(0,0,0,.1)}
+.tcarousel{
+  display:flex; gap:12px;
+  width:max-content;
+  animation:marquee 32s linear infinite;
+}
+.tcarousel.paused{ animation-play-state:paused }
+.tcard{
+  flex:0 0 auto; width:200px;
+  border-radius:14px; overflow:hidden;
+  box-shadow:0 4px 18px rgba(0,0,0,.1);
+}
 .tcard .img-slot{border-radius:0}
+@keyframes marquee{
+  from{ transform:translateX(0) }
+  to{ transform:translateX(-50%) } /* metade do trilho = 1 conjunto completo (duplicado) */
+}
 
 /* ── 11 — FAQ ─────────────────────────────────────────── */
 .flist{max-width:620px; margin:0 auto}
@@ -302,17 +329,19 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
 .fc-t{
   font-family:'Barlow Condensed',sans-serif; font-weight:900;
   font-size:clamp(26px,8vw,52px); text-transform:uppercase;
-  color:white; margin-bottom:6px;
+  color:white; margin-bottom:32px;
 }
 .fc-t .g{color:var(--gold)}
-.fc-fr{font-size:16px; color:rgba(255,255,255,.3); text-decoration:line-through; margin-bottom:4px}
-.fc-p{
-  font-family:'Barlow Condensed',sans-serif; font-weight:900;
-  font-size:clamp(64px,18vw,88px); color:var(--gold); line-height:1; margin-bottom:6px;
+.fc-cta{
+  font-size:22px; padding:20px 32px;
+  animation:fcPulse 1.8s infinite;
 }
-.fc-i{font-size:13px; color:rgba(255,255,255,.35); margin-bottom:28px}
+@keyframes fcPulse{
+  0%,100%{ box-shadow:0 6px 24px rgba(242,209,90,.35) }
+  50%{ box-shadow:0 6px 36px rgba(242,209,90,.7), 0 0 0 6px rgba(242,209,90,.12) }
+}
 .fc-chips{
-  margin-top:16px; color:rgba(255,255,255,.3); font-size:12px;
+  margin-top:20px; color:rgba(255,255,255,.3); font-size:12px;
   display:flex; justify-content:center; gap:12px; flex-wrap:wrap;
 }
 
@@ -451,7 +480,8 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
   .rcv-grid   { grid-template-columns:1fr 1fr; gap:12px }
   .steps-grid { grid-template-columns:1fr 1fr; gap:32px }
   .bonus-grid { grid-template-columns:1fr 1fr; gap:14px }
-  .tgrid      { grid-template-columns:1fr 1fr; gap:16px }
+  .tcard      { width:240px }
+  .tcarousel  { animation-duration:40s }
 
   /* Plans: 2-col, restore natural order */
   .plans      { grid-template-columns:1fr 1fr; gap:16px }
@@ -465,6 +495,10 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
 
   /* Guarantee row layout */
   .gbox{ flex-direction:row; text-align:left; padding:28px 32px }
+
+  /* No desktop, Completo fica à esquerda do Básico —
+     a seta aponta para a esquerda em vez de para baixo */
+  .p-note-arrow{ animation:bounceLeft 1.2s infinite }
 }
 </style>
 
@@ -761,7 +795,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
           <div class="pr">R$10</div>
 
           <a href="#" class="pbtn pb-b" onclick="openModal(event)">QUERO O BÁSICO</a>
-          <div class="p-note">92% escolhem o Completo ↑</div>
+          <div class="p-note"><span class="p-note-arrow">👇</span> 92% escolhem o Completo</div>
         </div>
       </div>
 
@@ -791,58 +825,96 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 
 <!-- ─── 10. DEPOIMENTOS ──────────────────────────────── -->
 <!--
-  Imagens completas — texto já embutido no mockup.
+  Carrossel infinito (loop horizontal contínuo) — CSS puro, sem JS de avanço.
+  Imagens completas, texto já embutido no mockup.
   ══════════════════════════════════════════════════
-  DEPO_1.png … DEPO_6.png
+  DEPO_1.jpg … DEPO_6.jpg
   Proporção: igual ao Mockup_Prova_social_1.png
-  Grade: 2 col desktop / 1 col mobile
+
+  IMPORTANTE: os 6 cards aparecem DUAS VEZES no HTML (12 no total).
+  Isso é o que cria o efeito de loop infinito sem "salto" visível.
+  O segundo bloco tem aria-hidden="true" (cópia visual, não lida por leitores de tela).
+  Se adicionar/remover depoimentos, replique a mudança nos DOIS blocos.
   ══════════════════════════════════════════════════
 -->
 <section class="s" style="background:var(--cream)">
   <div class="c">
     <h2 class="sh">Quem Baixou Aprovou</h2>
-    <div class="tgrid" style="margin-top:24px">
+  </div>
 
+  <!-- wrapper full-bleed: o overflow:hidden + máscara de borda ficam aqui -->
+  <div class="tcarousel-wrap" style="margin-top:18px">
+    <div class="tcarousel" id="tcarousel">
+
+      <!-- ═══ BLOCO 1 (real) ═══ -->
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_1.jpg">
           <img src="DEPO_1.jpg" alt="Depoimento 1">
         </div>
       </div>
-
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_2.jpg">
           <img src="DEPO_2.jpg" alt="Depoimento 2">
         </div>
       </div>
-
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_3.jpg">
           <img src="DEPO_3.jpg" alt="Depoimento 3">
         </div>
       </div>
-
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_4.jpg">
           <img src="DEPO_4.jpg" alt="Depoimento 4">
         </div>
       </div>
-
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_5.jpg">
           <img src="DEPO_5.jpg" alt="Depoimento 5">
         </div>
       </div>
-
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_6.jpg">
           <img src="DEPO_6.jpg" alt="Depoimento 6">
         </div>
       </div>
 
+      <!-- ═══ BLOCO 2 (cópia idêntica — cria o loop contínuo) ═══ -->
+      <div class="tcard" aria-hidden="true">
+        <div class="img-slot img-depo" data-label="DEPO_1.jpg">
+          <img src="DEPO_1.jpg" alt="" aria-hidden="true">
+        </div>
+      </div>
+      <div class="tcard" aria-hidden="true">
+        <div class="img-slot img-depo" data-label="DEPO_2.jpg">
+          <img src="DEPO_2.jpg" alt="" aria-hidden="true">
+        </div>
+      </div>
+      <div class="tcard" aria-hidden="true">
+        <div class="img-slot img-depo" data-label="DEPO_3.jpg">
+          <img src="DEPO_3.jpg" alt="" aria-hidden="true">
+        </div>
+      </div>
+      <div class="tcard" aria-hidden="true">
+        <div class="img-slot img-depo" data-label="DEPO_4.jpg">
+          <img src="DEPO_4.jpg" alt="" aria-hidden="true">
+        </div>
+      </div>
+      <div class="tcard" aria-hidden="true">
+        <div class="img-slot img-depo" data-label="DEPO_5.jpg">
+          <img src="DEPO_5.jpg" alt="" aria-hidden="true">
+        </div>
+      </div>
+      <div class="tcard" aria-hidden="true">
+        <div class="img-slot img-depo" data-label="DEPO_6.jpg">
+          <img src="DEPO_6.jpg" alt="" aria-hidden="true">
+        </div>
+      </div>
+
     </div>
-    <div style="text-align:center">
-      <a href="#planos" class="btn-green">🏁 QUERO A COLEÇÃO AGORA</a>
-    </div>
+  </div>
+
+  <div class="c" style="text-align:center;margin-top:24px">
+    <a href="#planos" class="btn-green">🏁 QUERO A COLEÇÃO AGORA</a>
   </div>
 </section>
 
@@ -883,10 +955,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 <section class="fcta">
   <div class="c">
     <h2 class="fc-t">+281 Arquivos Automotivos<br><span class="g">Prontos Para Colorir</span></h2>
-    <div class="fc-fr">de R$97,00</div>
-    <div class="fc-p">R$27</div>
-    <div class="fc-i">acesso vitalício — somente PIX</div>
-    <a href="#planos" class="btn-gold" style="font-size:20px;padding:18px 24px">🏁 QUERO A COLEÇÃO AGORA</a>
+    <a href="#planos" class="btn-gold fc-cta">⚡ ACESSAR AGORA</a>
     <div class="fc-chips">
       <span>⚡ Acesso imediato</span>
       <span>🔒 Pagamento seguro</span>
@@ -995,6 +1064,20 @@ function closeOnOverlay(e){
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeModal();
 });
+
+/* ── CARROSSEL DE DEPOIMENTOS — pausa ao tocar/passar o mouse ─ */
+(function(){
+  var track = document.getElementById('tcarousel');
+  if(!track) return;
+
+  function pause(){ track.classList.add('paused'); }
+  function resume(){ track.classList.remove('paused'); }
+
+  track.addEventListener('mouseenter', pause);
+  track.addEventListener('mouseleave', resume);
+  track.addEventListener('touchstart', pause, {passive:true});
+  track.addEventListener('touchend', resume);
+})();
 </script>
 </body>
 </html>
