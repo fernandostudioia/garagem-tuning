@@ -109,6 +109,29 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
   var(--blue) 0,var(--blue) 25px, var(--red) 25px,var(--red) 50px,
   var(--gold) 50px,var(--gold) 75px, var(--black) 75px,var(--black) 100px)}
 
+/* ── FAST LANE CTA ────────────────────────────────────── */
+/* Atalho para leads que já decidiram após ver a imagem hero */
+.fast-lane{
+  background:var(--black);
+  padding:14px 20px;
+  display:flex; align-items:center; justify-content:center;
+  gap:12px; flex-wrap:wrap; text-align:center;
+}
+.fast-lane-txt{
+  font-size:13px; color:rgba(255,255,255,.45);
+  font-family:'Barlow',sans-serif; font-weight:500;
+}
+.fast-lane-btn{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:15px; text-transform:uppercase; letter-spacing:1px;
+  color:var(--gold); text-decoration:none;
+  border:2px solid rgba(242,209,90,.5); border-radius:100px;
+  padding:7px 18px; transition:background .2s,color .2s,border-color .2s;
+  white-space:nowrap;
+}
+.fast-lane-btn:hover{ background:var(--gold); color:var(--black); border-color:var(--gold) }
+
 /* ── SECTION BASE ─────────────────────────────────────── */
 .s{padding:40px 16px}
 .c{max-width:760px; margin:0 auto}
@@ -558,6 +581,12 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 </section>
 
 <div class="stripe"></div>
+
+<!-- ─── FAST LANE — atalho para lead que já decidiu ─── -->
+<div class="fast-lane">
+  <span class="fast-lane-txt">Já viu o suficiente?</span>
+  <a href="#planos" class="fast-lane-btn">🏁 Ver planos e preços →</a>
+</div>
 
 
 <!-- ─── 2. BENEFÍCIOS ────────────────────────────────── -->
