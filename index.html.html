@@ -371,6 +371,55 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
 }
 
 /* urgency pricing label */
+/* ── DOR EMOCIONAL ────────────────────────────────────── */
+.pain-items{ list-style:none; max-width:520px; margin:0 auto 24px }
+.pain-item{
+  display:flex; gap:14px; align-items:flex-start;
+  padding:13px 0; border-bottom:1px solid rgba(255,255,255,.08);
+  font-size:14.5px; color:rgba(255,255,255,.75); line-height:1.6;
+}
+.pain-item:last-child{ border-bottom:none }
+.pain-ic{ font-size:22px; flex-shrink:0; line-height:1.4 }
+.pain-turn{
+  background:linear-gradient(135deg,var(--blue),var(--blue-dk));
+  border-radius:14px; padding:22px 24px; max-width:520px; margin:0 auto;
+  text-align:center;
+}
+.pain-turn h3{
+  font-family:'Barlow Condensed',sans-serif; font-weight:900;
+  font-size:22px; text-transform:uppercase; color:white; margin-bottom:8px;
+  line-height:1.1;
+}
+.pain-turn p{ font-size:14px; color:rgba(255,255,255,.75); line-height:1.6 }
+
+/* ── POR QUE OS PAIS ESCOLHEM ─────────────────────────── */
+.reason-list{ list-style:none; max-width:580px; margin:0 auto }
+.reason-list li{
+  display:flex; gap:14px; align-items:flex-start;
+  background:white; border-radius:10px; padding:14px 16px;
+  margin-bottom:10px; border-left:4px solid var(--blue);
+}
+.reason-ic{ font-size:22px; flex-shrink:0; line-height:1.4; margin-top:1px }
+.reason-list li strong{ display:block; font-size:14.5px; color:var(--black); margin-bottom:2px }
+.reason-list li p{ font-size:13px; color:#666; line-height:1.55; margin:0 }
+
+/* ── IMPRIMA PARA SEMPRE ──────────────────────────────── */
+.pf-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:14px;
+  max-width:640px; margin:0 auto;
+}
+.pf-card{
+  background:rgba(255,255,255,.06); border-radius:12px; padding:20px;
+  text-align:center; border:1px solid rgba(255,255,255,.1);
+}
+.pf-icon{ font-size:30px; margin-bottom:10px }
+.pf-title{
+  font-family:'Barlow Condensed',sans-serif; font-weight:800;
+  font-size:15px; text-transform:uppercase; color:var(--gold); margin-bottom:6px;
+}
+.pf-desc{ font-size:13px; color:rgba(255,255,255,.6); line-height:1.55 }
+@media(max-width:580px){ .pf-grid{ grid-template-columns:1fr } }
+
 .urglabel{
   display:inline-block; background:var(--red); color:white;
   font-family:'Barlow Condensed',sans-serif; font-weight:700;
@@ -556,12 +605,12 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 <section class="hero">
   <div class="c" style="max-width:500px">
 
-    <div class="h-badge">✦ COLEÇÃO EXCLUSIVA 2026</div>
+    <div class="h-badge">✦ A ATIVIDADE QUE TIRA DAS TELAS</div>
 
     <h1>
-      +101 Carros Tunados<br>
-      <em>Para Imprimir</em>
-      <span class="g">e Colorir</span>
+      Seu Filho Vai Largar<br>
+      <em>O Celular</em>
+      <span class="g">Por Horas.</span>
     </h1>
 
     <!--
@@ -575,9 +624,9 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <p class="h-tag">Baixe agora. Imprima em casa.<br><strong>Diversão garantida.</strong></p>
+    <p class="h-tag">+101 carros incríveis para imprimir e colorir —<br><strong>offline, sem app, sem mensalidade.</strong></p>
     <a href="#planos" class="btn-green">🏁 QUERO A COLEÇÃO AGORA</a>
-    <div class="cta-note">⚡ Acesso imediato no WhatsApp e e-mail</div>
+    <div class="cta-note">⚡ Acesso imediato — em 5 min você já tem atividade pronta</div>
 
   </div>
 </section>
@@ -590,269 +639,37 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
   <a href="#planos" class="fast-lane-btn">🏁 Ver planos e preços →</a>
 </div>
 
-
-<!-- ─── 2. BENEFÍCIOS ────────────────────────────────── -->
-<section class="s" style="background:var(--cream);padding-top:28px;padding-bottom:28px">
-  <div class="c">
-    <div class="chips">
-      <div class="chip"><span>📄</span> PDF pronto para imprimir</div>
-      <div class="chip"><span>♾️</span> Impressão ilimitada</div>
-      <div class="chip"><span>⚡</span> Acesso imediato</div>
-      <div class="chip"><span>🏎️</span> +281 arquivos automotivos</div>
-      <div class="chip"><span>🔒</span> Acesso vitalício</div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ─── 3. O QUE RECEBE ──────────────────────────────── -->
-<section class="s" style="background:white">
-  <div class="c">
-    <h2 class="sh">O Que Você Recebe</h2>
-    <p class="ss">Tudo em um único PDF — baixe, imprima e use na hora</p>
-    <div class="rcv-grid">
-      <div class="rcv">
-        <div class="rcv-t">Coleção Completa em PDF</div>
-        <p>+101 carros tunados num único arquivo organizado</p>
-      </div>
-      <div class="rcv">
-        <div class="rcv-t">Pronto Para Imprimir</div>
-        <p>Folha A4. Qualquer impressora. Em casa ou na gráfica.</p>
-      </div>
-      <div class="rcv">
-        <div class="rcv-t">Acesso Imediato</div>
-        <p>Receba no celular, tablet ou computador. Disponível 24h.</p>
-      </div>
-      <div class="rcv">
-        <div class="rcv-t">Impressão Ilimitada</div>
-        <p>Imprima, recomece e descubra novos modelos sempre.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ─── 4. IDEAL PARA QUEM ───────────────────────────── -->
-<section class="s" style="background:var(--cream)">
-  <div class="c">
-    <h2 class="sh">Ideal Para Quem Quer</h2>
-    <ul class="ideal-list">
-      <li>✅ Manter a criança entretida longe das telas</li>
-      <li>✅ Ter uma coleção de carros pronta para qualquer momento</li>
-      <li>✅ Dar um presente diferente para quem ama carros</li>
-      <li>✅ Usar em viagem, sala de espera ou fim de semana</li>
-      <li>✅ Impressão ilimitada — sem frete, sem espera</li>
-    </ul>
-  </div>
-</section>
-
-
-<!-- ─── 5. COMO FUNCIONA ─────────────────────────────── -->
-<!--
-  ══════════════════════════════════════════════════
-  MOCKUP_PASSO_1.png  MOCKUP_PASSO_2.png
-  MOCKUP_PASSO_3.png  MOCKUP_PASSO_4.png
-  240 × 240 px cada
-  ══════════════════════════════════════════════════
--->
-<section class="s" style="background:white">
-  <div class="c">
-    <h2 class="sh">Como Funciona</h2>
-    <div class="steps-grid">
-
-      <div class="step-cell">
-        <div class="img-slot img-step" data-label="Passo 1">
-          <img src="MOCKUP_PASSO_1.jpg" alt="Passo 1">
-        </div>
-        <div class="step-lbl">Passo 1</div>
-        <p class="step-desc">Compre e receba o link no WhatsApp e e-mail na hora</p>
-      </div>
-
-      <div class="step-cell">
-        <div class="img-slot img-step" data-label="Passo 2">
-          <img src="MOCKUP_PASSO_2.jpg" alt="Passo 2">
-        </div>
-        <div class="step-lbl">Passo 2</div>
-        <p class="step-desc">Abra o PDF e escolha o carro favorito da coleção</p>
-      </div>
-
-      <div class="step-cell">
-        <div class="img-slot img-step" data-label="Passo 3">
-          <img src="MOCKUP_PASSO_3.jpg" alt="Passo 3">
-        </div>
-        <div class="step-lbl">Passo 3</div>
-        <p class="step-desc">Imprima em folha A4 em qualquer impressora</p>
-      </div>
-
-      <div class="step-cell">
-        <div class="img-slot img-step" data-label="Passo 4">
-          <img src="MOCKUP_PASSO_4.jpg" alt="Passo 4">
-        </div>
-        <div class="step-lbl">Passo 4</div>
-        <p class="step-desc">Separe os lápis de cor e comece a diversão imediatamente</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="stripe"></div>
-
-
-<!-- ─── 6. BLOCO DE REFORÇO ──────────────────────────── -->
+<!-- ─── DOR — SEÇÃO EMOCIONAL ──────────────────────────── -->
 <section class="s" style="background:var(--black);text-align:center">
-  <div class="c">
-    <h2 class="rf-t">+281 Arquivos Automotivos.<br><span class="g">Baixa. Imprime. Diverte.</span></h2>
-    <a href="#planos" class="btn-gold">🏁 QUERO MINHA COLEÇÃO</a>
-  </div>
-</section>
-
-
-<!-- ─── 7. BÔNUS ─────────────────────────────────────── -->
-<!--
-  ══════════════════════════════════════════════════
-  MOCKUP_BONUS_1.png  MOCKUP_BONUS_2.png
-  MOCKUP_BONUS_3.png  MOCKUP_BONUS_4.png
-  640 × 360 px (16:9) cada
-  ══════════════════════════════════════════════════
--->
-<section class="s" style="background:var(--gold);text-align:center">
-  <div class="c">
-    <h2 class="sh">No Plano Completo Você Ainda Ganha</h2>
-    <div class="b-badge">🎁 +4 BÔNUS EXCLUSIVOS</div>
-    <div class="bonus-grid">
-
-      <div class="bcard">
-        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_1.jpg">
-          <img src="MOCKUP_BONUS_1.jpg" alt="+50 Supercarros">
-        </div>
-        <div class="bcard-body">
-          <div class="bt">+50 Supercarros Exclusivos</div>
-          <p class="bd">Ferrari, Lamborghini, McLaren, Bugatti</p>
-          <span class="bv">Valor: R$27</span>
-        </div>
-      </div>
-
-      <div class="bcard">
-        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_2.jpg">
-          <img src="MOCKUP_BONUS_2.jpg" alt="+50 Carros JDM">
-        </div>
-        <div class="bcard-body">
-          <div class="bt">+50 Carros JDM Lendários</div>
-          <p class="bd">Skyline, Supra, RX7, AE86, Evo, WRX</p>
-          <span class="bv">Valor: R$27</span>
-        </div>
-      </div>
-
-      <div class="bcard">
-        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_3.jpg">
-          <img src="MOCKUP_BONUS_3.jpg" alt="+50 Rebaixados BR">
-        </div>
-        <div class="bcard-body">
-          <div class="bt">+50 Carros Rebaixados Brasil</div>
-          <p class="bd">Cultura automotiva brasileira para colorir</p>
-          <span class="bv">Valor: R$27</span>
-        </div>
-      </div>
-
-      <div class="bcard">
-        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_4.jpg">
-          <img src="MOCKUP_BONUS_4.jpg" alt="+30 Pôsteres">
-        </div>
-        <div class="bcard-body">
-          <div class="bt">+30 Pôsteres Automotivos</div>
-          <p class="bd">Arte decorativa para imprimir e expor no quarto</p>
-          <span class="bv">Valor: R$17</span>
-        </div>
-      </div>
-
+  <div class="c" style="max-width:560px">
+    <h2 class="sh" style="color:white;margin-bottom:10px">A Rotina Que<br><span style="color:var(--red)">Todo Pai Conhece</span></h2>
+    <p style="color:rgba(255,255,255,.5);font-size:15px;margin-bottom:28px;line-height:1.65">
+      Não é falta de amor. É falta de uma atividade que ele realmente queira fazer.
+    </p>
+    <ul class="pain-items">
+      <li class="pain-item">
+        <span class="pain-ic">📱</span>
+        <span>Você chega em casa e ele está <strong style="color:white">no celular de novo</strong> — igual ontem, igual há uma semana</span>
+      </li>
+      <li class="pain-item">
+        <span class="pain-ic">😶</span>
+        <span><strong style="color:white">"Agora não"</strong> — a resposta que você recebe quando tenta chamar para brincar juntos</span>
+      </li>
+      <li class="pain-item">
+        <span class="pain-ic">🕐</span>
+        <span>O fim de semana passa e você percebe que <strong style="color:white">não fizeram nada juntos</strong> — outra vez</span>
+      </li>
+      <li class="pain-item">
+        <span class="pain-ic">😞</span>
+        <span>Você quer uma atividade offline que <strong style="color:white">ele peça para fazer</strong>, não que você precise forçar</span>
+      </li>
+    </ul>
+    <div class="pain-turn">
+      <h3>E se existisse uma atividade<br>que ele largasse o celular sozinho?</h3>
+      <p>Crianças apaixonadas por carros não resistem.<br>É só colocar na frente delas.</p>
     </div>
   </div>
 </section>
-
-<div class="stripe"></div>
-
-
-<!-- ─── 8. OFERTA / PLANOS ───────────────────────────── -->
-<!--
-  ══════════════════════════════════════════════════
-  MOCKUP_BASICO.png    — 480 × 360 px
-  MOCKUP_COMPLETO.png  — 480 × 360 px
-  ══════════════════════════════════════════════════
--->
-<section class="s" style="background:var(--cream)" id="planos">
-  <div class="c">
-    <div style="text-align:center;margin-bottom:12px">
-      <span class="urglabel">⏱️ ÚLTIMA CHANCE — ENCERRA HOJE</span>
-    </div>
-    <h2 class="sh">Escolha Seu Plano</h2>
-
-    <div class="plans">
-
-      <!-- COMPLETO — order:1 → aparece primeiro no mobile -->
-      <div class="plan-c">
-        <div class="p-rec">⚡ RECOMENDADO</div>
-        <div class="img-slot img-plan" data-label="MOCKUP_COMPLETO.jpg">
-          <img src="MOCKUP_COMPLETO.jpg" alt="Plano Completo">
-        </div>
-        <div class="plan-body">
-          <div class="pn">Plano Completo</div>
-          <ul class="pi">
-            <li>✅ +101 Carros Tunados</li>
-            <li>🎁 +50 Supercarros Exclusivos</li>
-            <li>🎁 +50 Carros JDM Lendários</li>
-            <li>🎁 +50 Carros Rebaixados Brasil</li>
-            <li>🎁 +30 Pôsteres Automotivos</li>
-          </ul>
-          <div class="fr">de R$97,00 por:</div>
-          <div class="pr">R$27</div>
-
-          <a href="https://ggcheckout.app/checkout/v5/GxJfq0cb9WwMCqYOzTvB" target="_blank" class="pbtn pb-c"
-             onclick="fbq('track','InitiateCheckout',{value:27.00,currency:'BRL',content_name:'Plano Completo'})">🏁 QUERO O COMPLETO</a>
-        </div>
-      </div>
-
-      <!-- BÁSICO — order:2 → aparece segundo no mobile -->
-      <div class="plan-b">
-        <div class="img-slot img-plan" data-label="MOCKUP_BASICO.jpg">
-          <img src="MOCKUP_BASICO.jpg" alt="Plano Básico">
-        </div>
-        <div class="plan-body">
-          <div class="pn">Plano Básico</div>
-          <ul class="pi">
-            <li>✅ +101 Carros Tunados Para Colorir</li>
-          </ul>
-          <div class="fr">de R$47,00 por:</div>
-          <div class="pr">R$10</div>
-
-          <a href="#" class="pbtn pb-b" onclick="openModal(event)">QUERO O BÁSICO</a>
-          <div class="p-note"><span class="p-note-arrow">👇</span> 92% escolhem o Completo</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ─── 9. GARANTIA ──────────────────────────────────── -->
-<section class="s" style="background:var(--cream)">
-  <div class="c">
-    <div class="gbox">
-      <div class="gseal">
-        <div class="gd">15</div>
-        <div class="gl">DIAS<br>GARANTIA</div>
-      </div>
-      <div class="gtxt">
-        <h3>Garantia de 15 Dias</h3>
-        <p>Se não gostar por qualquer motivo, devolvemos 100% do valor. Sem perguntas, sem burocracia.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="stripe"></div>
-
 
 <!-- ─── 10. DEPOIMENTOS ──────────────────────────────── -->
 <!--
@@ -948,6 +765,344 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
     <a href="#planos" class="btn-green">🏁 QUERO A COLEÇÃO AGORA</a>
   </div>
 </section>
+
+
+
+
+<!-- ─── 2. BENEFÍCIOS ────────────────────────────────── -->
+<section class="s" style="background:var(--cream);padding-top:28px;padding-bottom:28px">
+  <div class="c">
+    <div class="chips">
+      <div class="chip"><span>📵</span> Menos tempo de tela</div>
+      <div class="chip"><span>🏎️</span> +281 carros automotivos</div>
+      <div class="chip"><span>♾️</span> Impressão ilimitada</div>
+      <div class="chip"><span>⚡</span> Acesso imediato</div>
+      <div class="chip"><span>🔒</span> Pague só uma vez</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 3. O QUE RECEBE ──────────────────────────────── -->
+<section class="s" style="background:white">
+  <div class="c">
+    <h2 class="sh">O Que Acontece<br>Depois da Compra</h2>
+    <p class="ss">Em menos de 5 minutos você já tem uma atividade pronta</p>
+    <div class="rcv-grid">
+      <div class="rcv">
+        <div class="rcv-t">Horas Longe Das Telas</div>
+        <p>+100 carros incríveis que prendem a atenção — tardes inteiras de atividade offline sem esforço</p>
+      </div>
+      <div class="rcv">
+        <div class="rcv-t">Atividade Pronta Agora</div>
+        <p>Recebeu? Imprimiu. Em 5 minutos o programa do fim de semana já está resolvido.</p>
+      </div>
+      <div class="rcv">
+        <div class="rcv-t">Nunca Acaba a Novidade</div>
+        <p>Amassou? Errou a cor? É só imprimir de novo — sem custo extra, para sempre.</p>
+      </div>
+      <div class="rcv">
+        <div class="rcv-t">Momento Real Juntos</div>
+        <p>Sentar do lado, escolher o carro favorito, comentar juntos — isso é o que vira memória.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 4. IDEAL PARA QUEM ───────────────────────────── -->
+<section class="s" style="background:var(--cream)">
+  <div class="c">
+    <h2 class="sh">Ideal Para Quem Quer</h2>
+    <ul class="ideal-list">
+      <li>✅ Tirar a criança das telas com algo que ela ame de verdade</li>
+      <li>✅ Ter uma atividade pronta para qualquer momento — fim de semana, viagem, chuva</li>
+      <li>✅ Fazer algo juntos em torno da paixão por carros</li>
+      <li>✅ Um presente diferente que vira programa favorito da semana</li>
+      <li>✅ Impressão ilimitada — sem frete, sem espera, sem custo extra</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ─── POR QUE OS PAIS ESCOLHEM ──────────────────────── -->
+<section class="s" style="background:white">
+  <div class="c">
+    <h2 class="sh">Por Que Os Pais Estão<br><span style="color:var(--blue)">Escolhendo Esta Coleção?</span></h2>
+    <p class="ss">A solução que pais de fãs de carros descobriram</p>
+    <ul class="reason-list">
+      <li>
+        <span class="reason-ic">📵</span>
+        <div><strong>Menos tela — de verdade</strong>
+        <p>Não é proibição. É substituição por algo que a criança ama. Funciona porque parte da paixão dela.</p></div>
+      </li>
+      <li>
+        <span class="reason-ic">🚗</span>
+        <div><strong>Usa o que ele já ama</strong>
+        <p>Carros não são uma imposição dos pais — são a paixão dele. Você só está alimentando isso de uma forma saudável.</p></div>
+      </li>
+      <li>
+        <span class="reason-ic">🎨</span>
+        <div><strong>Estimula criatividade e concentração</strong>
+        <p>Colorir desenvolve coordenação motora, foco e paciência — sem parecer que é "educativo".</p></div>
+      </li>
+      <li>
+        <span class="reason-ic">🏁</span>
+        <div><strong>Programa de fim de semana resolvido</strong>
+        <p>Sábado chuvoso, viagem longa, sala de espera — sempre tem um carro novo para colorir.</p></div>
+      </li>
+      <li>
+        <span class="reason-ic">🎁</span>
+        <div><strong>O presente que não some depois de uma semana</strong>
+        <p>Não é brinquedo que quebra ou jogo que enjoa. São meses de atividade nova toda vez que imprime.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ─── 5. COMO FUNCIONA ─────────────────────────────── -->
+<!--
+  ══════════════════════════════════════════════════
+  MOCKUP_PASSO_1.png  MOCKUP_PASSO_2.png
+  MOCKUP_PASSO_3.png  MOCKUP_PASSO_4.png
+  240 × 240 px cada
+  ══════════════════════════════════════════════════
+-->
+<section class="s" style="background:white">
+  <div class="c">
+    <h2 class="sh">Como Funciona</h2>
+    <div class="steps-grid">
+
+      <div class="step-cell">
+        <div class="img-slot img-step" data-label="Passo 1">
+          <img src="MOCKUP_PASSO_1.jpg" alt="Passo 1">
+        </div>
+        <div class="step-lbl">Passo 1</div>
+        <p class="step-desc">Compre e receba o link no WhatsApp e e-mail na hora</p>
+      </div>
+
+      <div class="step-cell">
+        <div class="img-slot img-step" data-label="Passo 2">
+          <img src="MOCKUP_PASSO_2.jpg" alt="Passo 2">
+        </div>
+        <div class="step-lbl">Passo 2</div>
+        <p class="step-desc">Abra o PDF e escolha o carro favorito da coleção</p>
+      </div>
+
+      <div class="step-cell">
+        <div class="img-slot img-step" data-label="Passo 3">
+          <img src="MOCKUP_PASSO_3.jpg" alt="Passo 3">
+        </div>
+        <div class="step-lbl">Passo 3</div>
+        <p class="step-desc">Imprima em folha A4 em qualquer impressora</p>
+      </div>
+
+      <div class="step-cell">
+        <div class="img-slot img-step" data-label="Passo 4">
+          <img src="MOCKUP_PASSO_4.jpg" alt="Passo 4">
+        </div>
+        <div class="step-lbl">Passo 4</div>
+        <p class="step-desc">Separe os lápis de cor e comece a diversão imediatamente</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+
+<!-- ─── COMPRE UMA VEZ. IMPRIMA PARA SEMPRE. ─────────── -->
+<section class="s" style="background:var(--black);text-align:center">
+  <div class="c">
+    <h2 class="sh" style="color:white;margin-bottom:8px">Compre Uma Vez.<br><span style="color:var(--gold)">Imprima Para Sempre.</span></h2>
+    <p class="ss" style="color:rgba(255,255,255,.5);margin-bottom:32px">Sem mensalidade. Sem limite. Sem assinatura.</p>
+    <div class="pf-grid">
+      <div class="pf-card">
+        <div class="pf-icon">💳</div>
+        <div class="pf-title">Pague Só Uma Vez</div>
+        <p class="pf-desc">R$27 único. Sem cobrança mensal, sem renovação, sem surpresa no cartão.</p>
+      </div>
+      <div class="pf-card">
+        <div class="pf-icon">🖨️</div>
+        <div class="pf-title">Imprima Sem Limite</div>
+        <p class="pf-desc">Amassou? Errou a cor? A criança quis de novo? Imprime. Quantas vezes quiser.</p>
+      </div>
+      <div class="pf-card">
+        <div class="pf-icon">♾️</div>
+        <div class="pf-title">Acesso Vitalício</div>
+        <p class="pf-desc">Daqui a 2 anos o arquivo ainda vai estar lá. É seu para sempre, sem depender de nada.</p>
+      </div>
+      <div class="pf-card">
+        <div class="pf-icon">🏁</div>
+        <div class="pf-title">Novidade Toda Semana</div>
+        <p class="pf-desc">+281 arquivos — dá pra imprimir um diferente todo dia durante meses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 6. BLOCO DE REFORÇO ──────────────────────────── -->
+<section class="s" style="background:var(--black);text-align:center">
+  <div class="c">
+    <h2 class="rf-t">Menos Tela.<br>Mais Memória.<br><span class="g">Pague Uma Vez.</span></h2>
+    <a href="#planos" class="btn-gold">🏁 QUERO MINHA COLEÇÃO</a>
+  </div>
+</section>
+
+
+<!-- ─── 7. BÔNUS ─────────────────────────────────────── -->
+<!--
+  ══════════════════════════════════════════════════
+  MOCKUP_BONUS_1.png  MOCKUP_BONUS_2.png
+  MOCKUP_BONUS_3.png  MOCKUP_BONUS_4.png
+  640 × 360 px (16:9) cada
+  ══════════════════════════════════════════════════
+-->
+<section class="s" style="background:var(--gold);text-align:center">
+  <div class="c">
+    <h2 class="sh">No Plano Completo Você Ainda Ganha</h2>
+    <div class="b-badge">🎁 +4 BÔNUS EXCLUSIVOS</div>
+    <div class="bonus-grid">
+
+      <div class="bcard">
+        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_1.jpg">
+          <img src="MOCKUP_BONUS_1.jpg" alt="+50 Supercarros">
+        </div>
+        <div class="bcard-body">
+          <div class="bt">+50 Supercarros Exclusivos</div>
+          <p class="bd">Ferrari, Lamborghini, McLaren, Bugatti</p>
+          <span class="bv">Valor: R$27</span>
+        </div>
+      </div>
+
+      <div class="bcard">
+        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_2.jpg">
+          <img src="MOCKUP_BONUS_2.jpg" alt="+50 Carros JDM">
+        </div>
+        <div class="bcard-body">
+          <div class="bt">+50 Carros JDM Lendários</div>
+          <p class="bd">Skyline, Supra, RX7, AE86, Evo, WRX</p>
+          <span class="bv">Valor: R$27</span>
+        </div>
+      </div>
+
+      <div class="bcard">
+        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_3.jpg">
+          <img src="MOCKUP_BONUS_3.jpg" alt="+50 Rebaixados BR">
+        </div>
+        <div class="bcard-body">
+          <div class="bt">+50 Carros Rebaixados Brasil</div>
+          <p class="bd">Cultura automotiva brasileira para colorir</p>
+          <span class="bv">Valor: R$27</span>
+        </div>
+      </div>
+
+      <div class="bcard">
+        <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_4.jpg">
+          <img src="MOCKUP_BONUS_4.jpg" alt="+30 Pôsteres">
+        </div>
+        <div class="bcard-body">
+          <div class="bt">+30 Pôsteres Automotivos</div>
+          <p class="bd">Arte decorativa para imprimir e expor no quarto</p>
+          <span class="bv">Valor: R$17</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+
+<!-- ─── 8. OFERTA / PLANOS ───────────────────────────── -->
+<!--
+  ══════════════════════════════════════════════════
+  MOCKUP_BASICO.png    — 480 × 360 px
+  MOCKUP_COMPLETO.png  — 480 × 360 px
+  ══════════════════════════════════════════════════
+-->
+<section class="s" style="background:var(--cream)" id="planos">
+  <div class="c">
+    <div style="text-align:center;margin-bottom:12px">
+      <span class="urglabel">⏱️ ÚLTIMA CHANCE — ENCERRA HOJE</span>
+    </div>
+    <h2 class="sh">Escolha Seu Plano</h2>
+
+    <div class="plans">
+
+      <!-- COMPLETO — order:1 → aparece primeiro no mobile -->
+      <div class="plan-c">
+        <div class="p-rec">⚡ RECOMENDADO</div>
+        <div class="img-slot img-plan" data-label="MOCKUP_COMPLETO.jpg">
+          <img src="MOCKUP_COMPLETO.jpg" alt="Plano Completo">
+        </div>
+        <div class="plan-body">
+          <div class="pn">Plano Completo</div>
+          <p style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:12px;font-style:italic">Meses de atividade offline. Sem repetir.</p>
+          <ul class="pi">
+            <li>✅ +101 Carros Tunados — semanas de atividade garantida</li>
+            <li>🎁 +50 Supercarros — Ferrari, Lambo, McLaren, Bugatti</li>
+            <li>🎁 +50 JDMs Lendários — Skyline, Supra, RX7, AE86</li>
+            <li>🎁 +50 Rebaixados Brasil — cultura que ele vai reconhecer</li>
+            <li>🎁 +30 Pôsteres — decora o quarto sem custo extra</li>
+          </ul>
+          <div class="fr">de R$97,00 por:</div>
+          <div class="pr">R$27</div>
+
+          <a href="https://ggcheckout.app/checkout/v5/GxJfq0cb9WwMCqYOzTvB" target="_blank" class="pbtn pb-c"
+             onclick="fbq('track','InitiateCheckout',{value:27.00,currency:'BRL',content_name:'Plano Completo'})">🏁 QUERO O COMPLETO</a>
+        </div>
+      </div>
+
+      <!-- BÁSICO — order:2 → aparece segundo no mobile -->
+      <div class="plan-b">
+        <div class="img-slot img-plan" data-label="MOCKUP_BASICO.jpg">
+          <img src="MOCKUP_BASICO.jpg" alt="Plano Básico">
+        </div>
+        <div class="plan-body">
+          <div class="pn">Plano Básico</div>
+          <p style="font-size:12px;color:#aaa;margin-bottom:12px;font-style:italic">Para começar e ver o resultado.</p>
+          <ul class="pi">
+            <li>✅ +101 Carros Tunados Para Colorir</li>
+          </ul>
+          <div class="fr">de R$47,00 por:</div>
+          <div class="pr">R$10</div>
+
+          <a href="#" class="pbtn pb-b" onclick="openModal(event)">QUERO O BÁSICO</a>
+          <div class="p-note"><span class="p-note-arrow">👇</span> 92% escolhem o Completo</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── 9. GARANTIA ──────────────────────────────────── -->
+<section class="s" style="background:var(--cream)">
+  <div class="c">
+    <div class="gbox">
+      <div class="gseal">
+        <div class="gd">15</div>
+        <div class="gl">DIAS<br>GARANTIA</div>
+      </div>
+      <div class="gtxt">
+        <h3>Garantia Incondicional de 15 Dias</h3>
+        <p>Se em 15 dias a atividade não prender sua criança, não tirar das telas ou simplesmente não servir — devolvemos 100% do seu dinheiro.</p>
+        <p style="margin-top:8px;font-size:13px;color:#777">Sem pergunta, sem formulário, sem espera. O risco é inteiramente nosso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+
+
 
 
 <!-- ─── 11. FAQ ───────────────────────────────────────── -->
