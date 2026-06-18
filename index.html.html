@@ -3,10 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Garagem Tuning Para Colorir</title>
+<meta name="description" content="+101 carros tunados para imprimir e colorir — a atividade que tira a criança das telas. Supercarros, JDMs, rebaixados e pôsteres automotivos. PDF com acesso imediato.">
+<title>Garagem Tuning Para Colorir — Tire Seu Filho Das Telas</title>
 <!-- Kronos Shield — cloaker + anti-clone -->
 <script src="https://shield.okronos.pro/shield.js" data-project="omyh3x5a" data-domain="garagem-tuning.vercel.app/" data-breakout="1"></script>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Preconnect: elimina latência de DNS/TCP nas fontes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fontes async: não bloqueiam renderização -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600;700&display=swap"></noscript>
+<!-- Preload da imagem hero — prioriza o LCP -->
+<link rel="preload" as="image" href="MOCKUP_HERO.jpg" fetchpriority="high">
 <style>
 
 /* ╔══════════════════════════════════════════════════════╗
@@ -22,7 +30,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
+body{font-family:'Barlow',system-ui,-apple-system,sans-serif;color:var(--black);background:var(--cream)}
 
 /* ── IMAGE SLOTS ──────────────────────────────────────── */
 .img-slot{
@@ -319,6 +327,7 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
   display:flex; gap:12px;
   width:max-content;
   animation:marquee 32s linear infinite;
+  will-change:transform; /* GPU compositing — evita repaint */
 }
 .tcarousel.paused{ animation-play-state:paused }
 .tcard{
@@ -329,7 +338,7 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
 .tcard .img-slot{border-radius:0}
 @keyframes marquee{
   from{ transform:translateX(0) }
-  to{ transform:translateX(-50%) } /* metade do trilho = 1 conjunto completo (duplicado) */
+  to{ transform:translateX(-50%) }
 }
 
 /* ── 11 — FAQ ─────────────────────────────────────────── */
@@ -360,6 +369,7 @@ body{font-family:'Barlow',sans-serif;color:var(--black);background:var(--cream)}
 .fc-cta{
   font-size:22px; padding:20px 32px;
   animation:fcPulse 1.8s infinite;
+  will-change:box-shadow;
 }
 @keyframes fcPulse{
   0%,100%{ box-shadow:0 6px 24px rgba(242,209,90,.35) }
@@ -598,7 +608,9 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 <body>
 
 <!-- ─── URGENCY ─────────────────────────────────────── -->
-<div class="urg">⚡ OFERTA VÁLIDA APENAS HOJE — <span id="urg-date">08/06/2026</span></div>
+<div class="urg" role="banner">⚡ OFERTA VÁLIDA APENAS HOJE — <span id="urg-date">08/06/2026</span></div>
+
+<main>
 
 
 <!-- ─── 1. HERO ──────────────────────────────────────── -->
@@ -620,7 +632,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
     -->
     <div class="hero-img-wrap">
       <div class="img-slot img-hero" data-label="MOCKUP_HERO.jpg">
-        <img src="MOCKUP_HERO.jpg" alt="Garagem Tuning Para Colorir — +101 Carros">
+        <img src="MOCKUP_HERO.jpg" alt="Garagem Tuning Para Colorir — +101 Carros" width="760" height="570" fetchpriority="high" decoding="sync">
       </div>
     </div>
 
@@ -697,64 +709,64 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
       <!-- ═══ BLOCO 1 (real) ═══ -->
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_1.jpg">
-          <img src="DEPO_1.jpg" alt="Depoimento 1">
+          <img src="DEPO_1.jpg" alt="Depoimento 1" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_2.jpg">
-          <img src="DEPO_2.jpg" alt="Depoimento 2">
+          <img src="DEPO_2.jpg" alt="Depoimento 2" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_3.jpg">
-          <img src="DEPO_3.jpg" alt="Depoimento 3">
+          <img src="DEPO_3.jpg" alt="Depoimento 3" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_4.jpg">
-          <img src="DEPO_4.jpg" alt="Depoimento 4">
+          <img src="DEPO_4.jpg" alt="Depoimento 4" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_5.jpg">
-          <img src="DEPO_5.jpg" alt="Depoimento 5">
+          <img src="DEPO_5.jpg" alt="Depoimento 5" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tcard">
         <div class="img-slot img-depo" data-label="DEPO_6.jpg">
-          <img src="DEPO_6.jpg" alt="Depoimento 6">
+          <img src="DEPO_6.jpg" alt="Depoimento 6" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
 
       <!-- ═══ BLOCO 2 (cópia idêntica — cria o loop contínuo) ═══ -->
       <div class="tcard" aria-hidden="true">
         <div class="img-slot img-depo" data-label="DEPO_1.jpg">
-          <img src="DEPO_1.jpg" alt="" aria-hidden="true">
+          <img src="DEPO_1.jpg" alt="" aria-hidden="true" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tcard" aria-hidden="true">
         <div class="img-slot img-depo" data-label="DEPO_2.jpg">
-          <img src="DEPO_2.jpg" alt="" aria-hidden="true">
+          <img src="DEPO_2.jpg" alt="" aria-hidden="true" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tcard" aria-hidden="true">
         <div class="img-slot img-depo" data-label="DEPO_3.jpg">
-          <img src="DEPO_3.jpg" alt="" aria-hidden="true">
+          <img src="DEPO_3.jpg" alt="" aria-hidden="true" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tcard" aria-hidden="true">
         <div class="img-slot img-depo" data-label="DEPO_4.jpg">
-          <img src="DEPO_4.jpg" alt="" aria-hidden="true">
+          <img src="DEPO_4.jpg" alt="" aria-hidden="true" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tcard" aria-hidden="true">
         <div class="img-slot img-depo" data-label="DEPO_5.jpg">
-          <img src="DEPO_5.jpg" alt="" aria-hidden="true">
+          <img src="DEPO_5.jpg" alt="" aria-hidden="true" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="tcard" aria-hidden="true">
         <div class="img-slot img-depo" data-label="DEPO_6.jpg">
-          <img src="DEPO_6.jpg" alt="" aria-hidden="true">
+          <img src="DEPO_6.jpg" alt="" aria-hidden="true" width="200" height="244" loading="lazy" decoding="async">
         </div>
       </div>
 
@@ -876,7 +888,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 
       <div class="step-cell">
         <div class="img-slot img-step" data-label="Passo 1">
-          <img src="MOCKUP_PASSO_1.jpg" alt="Passo 1">
+          <img src="MOCKUP_PASSO_1.jpg" alt="Passo 1" width="120" height="120" loading="lazy" decoding="async">
         </div>
         <div class="step-lbl">Passo 1</div>
         <p class="step-desc">Compre e receba o link no WhatsApp e e-mail na hora</p>
@@ -884,7 +896,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 
       <div class="step-cell">
         <div class="img-slot img-step" data-label="Passo 2">
-          <img src="MOCKUP_PASSO_2.jpg" alt="Passo 2">
+          <img src="MOCKUP_PASSO_2.jpg" alt="Passo 2" width="120" height="120" loading="lazy" decoding="async">
         </div>
         <div class="step-lbl">Passo 2</div>
         <p class="step-desc">Abra o PDF e escolha o carro favorito da coleção</p>
@@ -892,7 +904,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 
       <div class="step-cell">
         <div class="img-slot img-step" data-label="Passo 3">
-          <img src="MOCKUP_PASSO_3.jpg" alt="Passo 3">
+          <img src="MOCKUP_PASSO_3.jpg" alt="Passo 3" width="120" height="120" loading="lazy" decoding="async">
         </div>
         <div class="step-lbl">Passo 3</div>
         <p class="step-desc">Imprima em folha A4 em qualquer impressora</p>
@@ -900,7 +912,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 
       <div class="step-cell">
         <div class="img-slot img-step" data-label="Passo 4">
-          <img src="MOCKUP_PASSO_4.jpg" alt="Passo 4">
+          <img src="MOCKUP_PASSO_4.jpg" alt="Passo 4" width="120" height="120" loading="lazy" decoding="async">
         </div>
         <div class="step-lbl">Passo 4</div>
         <p class="step-desc">Separe os lápis de cor e comece a diversão imediatamente</p>
@@ -969,7 +981,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 
       <div class="bcard">
         <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_1.jpg">
-          <img src="MOCKUP_BONUS_1.jpg" alt="+50 Supercarros">
+          <img src="MOCKUP_BONUS_1.jpg" alt="+50 Supercarros" width="640" height="360" loading="lazy" decoding="async">
         </div>
         <div class="bcard-body">
           <div class="bt">+50 Supercarros Exclusivos</div>
@@ -980,7 +992,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 
       <div class="bcard">
         <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_2.jpg">
-          <img src="MOCKUP_BONUS_2.jpg" alt="+50 Carros JDM">
+          <img src="MOCKUP_BONUS_2.jpg" alt="+50 Carros JDM" width="640" height="360" loading="lazy" decoding="async">
         </div>
         <div class="bcard-body">
           <div class="bt">+50 Carros JDM Lendários</div>
@@ -991,7 +1003,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 
       <div class="bcard">
         <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_3.jpg">
-          <img src="MOCKUP_BONUS_3.jpg" alt="+50 Rebaixados BR">
+          <img src="MOCKUP_BONUS_3.jpg" alt="+50 Rebaixados BR" width="640" height="360" loading="lazy" decoding="async">
         </div>
         <div class="bcard-body">
           <div class="bt">+50 Carros Rebaixados Brasil</div>
@@ -1002,7 +1014,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
 
       <div class="bcard">
         <div class="img-slot img-bonus" data-label="MOCKUP_BONUS_4.jpg">
-          <img src="MOCKUP_BONUS_4.jpg" alt="+30 Pôsteres">
+          <img src="MOCKUP_BONUS_4.jpg" alt="+30 Pôsteres" width="640" height="360" loading="lazy" decoding="async">
         </div>
         <div class="bcard-body">
           <div class="bt">+30 Pôsteres Automotivos</div>
@@ -1038,7 +1050,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
       <div class="plan-c">
         <div class="p-rec">⚡ RECOMENDADO</div>
         <div class="img-slot img-plan" data-label="MOCKUP_COMPLETO.jpg">
-          <img src="MOCKUP_COMPLETO.jpg" alt="Plano Completo">
+          <img src="MOCKUP_COMPLETO.jpg" alt="Plano Completo" width="480" height="360" loading="lazy" decoding="async">
         </div>
         <div class="plan-body">
           <div class="pn">Plano Completo</div>
@@ -1061,7 +1073,7 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
       <!-- BÁSICO — order:2 → aparece segundo no mobile -->
       <div class="plan-b">
         <div class="img-slot img-plan" data-label="MOCKUP_BASICO.jpg">
-          <img src="MOCKUP_BASICO.jpg" alt="Plano Básico">
+          <img src="MOCKUP_BASICO.jpg" alt="Plano Básico" width="480" height="360" loading="lazy" decoding="async">
         </div>
         <div class="plan-body">
           <div class="pn">Plano Básico</div>
@@ -1160,6 +1172,8 @@ src="https://www.facebook.com/tr?id=1795841218255298&ev=PageView&noscript=1"
   https://ggcheckout.app/checkout/v5/GxJfq0cb9WwMCqYOzTvB        → checkout R$27 (plano completo)
   https://ggcheckout.app/checkout/v5/EcTsM4oN7ecQJRvKRi84   → checkout R$17 (completo c/ desconto modal)
   ══════════════════════════════════════════════════════ -->
+
+</main>
 
 <!-- ─── MODAL UPSELL ────────────────────────────────── -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
