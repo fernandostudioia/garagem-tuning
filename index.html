@@ -599,6 +599,12 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '4454501998095926');
 fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'Garagem Tuning Para Colorir',
+  content_type: 'product',
+  currency: 'BRL',
+  value: 27.00
+});
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
@@ -1066,8 +1072,8 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
           <div class="fr">de R$97,00 por:</div>
           <div class="pr">R$27</div>
 
-          <a href="https://ggcheckout.app/checkout/v5/GxJfq0cb9WwMCqYOzTvB" target="_blank" class="pbtn pb-c"
-             onclick="fbq('track','InitiateCheckout',{value:27.00,currency:'BRL',content_name:'Plano Completo'})">🏁 QUERO O COMPLETO</a>
+          <a href="https://ggcheckout.app/checkout/v5/GxJfq0cb9WwMCqYOzTvB" class="pbtn pb-c"
+             onclick="goCheckout(event,'https://ggcheckout.app/checkout/v5/GxJfq0cb9WwMCqYOzTvB',27.00,'Plano Completo')">🏁 QUERO O COMPLETO</a>
         </div>
       </div>
 
@@ -1217,14 +1223,14 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
       </div>
 
       <!-- CTA aceitar -->
-      <a href="https://ggcheckout.app/checkout/v5/EcTsM4oN7ecQJRvKRi84" target="_blank" class="modal-cta"
-         onclick="fbq('track','InitiateCheckout',{value:17.00,currency:'BRL',content_name:'Plano Completo Desconto'})">
+      <a href="https://ggcheckout.app/checkout/v5/EcTsM4oN7ecQJRvKRi84" class="modal-cta"
+         onclick="goCheckout(event,'https://ggcheckout.app/checkout/v5/EcTsM4oN7ecQJRvKRi84',17.00,'Plano Completo Desconto')">
         🏁 SIM, QUERO O COMPLETO POR R$17
       </a>
 
       <!-- Declinar — vai para checkout básico -->
-      <a href="https://ggcheckout.app/checkout/v5/f1QqE95CXi0ZvgqHmY3W" target="_blank" class="modal-decline"
-         onclick="fbq('track','InitiateCheckout',{value:10.00,currency:'BRL',content_name:'Plano Basico'})">
+      <a href="https://ggcheckout.app/checkout/v5/f1QqE95CXi0ZvgqHmY3W" class="modal-decline"
+         onclick="goCheckout(event,'https://ggcheckout.app/checkout/v5/f1QqE95CXi0ZvgqHmY3W',10.00,'Plano Basico')">
         Não, prefiro levar só os 101 carros por R$10 e deixar os bônus para trás →
       </a>
 
@@ -1238,6 +1244,23 @@ function f(el){
   const item=el.parentElement,open=item.classList.contains('open');
   document.querySelectorAll('.fi').forEach(i=>i.classList.remove('open'));
   if(!open)item.classList.add('open');
+}
+
+/* ── CHECKOUT MOBILE-SAFE ────────────────────────────
+   Sem eventCallback — não confiável no iOS/Safari WebKit.
+   fbq('track') inicia o image beacon imediatamente.
+   500ms é suficiente para o beacon ser enviado antes do redirect.
+   Sem this delay, o iOS cancela a requisição pendente. */
+function goCheckout(e, url, value, contentName) {
+  e.preventDefault();
+  fbq('track', 'InitiateCheckout', {
+    value: value,
+    currency: 'BRL',
+    content_name: contentName
+  });
+  setTimeout(function() {
+    window.location.href = url;
+  }, 500);
 }
 
 /* ── SCROLL SUAVE para #planos (fallback universal) ─── */
