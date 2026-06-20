@@ -597,14 +597,31 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
+/* ── Helpers CAPI (definidos aqui para usar no PageView/ViewContent) ── */
+function _getCookie(n){var m=document.cookie.match(new RegExp('(^| )'+n+'=([^;]+)'));return m?m[2]:void 0;}
+function _genId(p){return p+'_'+Date.now()+'_'+Math.random().toString(36).slice(2,7);}
+function sendCAPI(en,eid,cd){
+  var d={event_name:en,event_id:eid,page_url:window.location.href,
+         fbp:_getCookie('_fbp'),fbc:_getCookie('_fbc')};
+  if(cd)d.custom_data=cd;
+  var blob=new Blob([JSON.stringify(d)],{type:'application/json'});
+  if(navigator.sendBeacon){navigator.sendBeacon('/api/track',blob);}
+  else{var x=new XMLHttpRequest();x.open('POST','/api/track',true);
+       x.setRequestHeader('Content-Type','application/json');x.send(JSON.stringify(d));}
+}
+
 fbq('init', '4454501998095926');
-fbq('track', 'PageView');
-fbq('track', 'ViewContent', {
-  content_name: 'Garagem Tuning Para Colorir',
-  content_type: 'product',
-  currency: 'BRL',
-  value: 27.00
-});
+
+/* PageView — browser pixel + CAPI com mesmo eventID para deduplicação */
+var _pvId = _genId('pv');
+fbq('track', 'PageView', {}, {eventID: _pvId});
+sendCAPI('PageView', _pvId);
+
+/* ViewContent — browser pixel + CAPI */
+var _vcId = _genId('vc');
+var _vcData = {content_name:'Garagem Tuning Para Colorir',content_type:'product',currency:'BRL',value:27.00};
+fbq('track', 'ViewContent', _vcData, {eventID: _vcId});
+sendCAPI('ViewContent', _vcId, _vcData);
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
@@ -1246,21 +1263,27 @@ function f(el){
   if(!open)item.classList.add('open');
 }
 
-/* ── CHECKOUT MOBILE-SAFE ────────────────────────────
-   Sem eventCallback — não confiável no iOS/Safari WebKit.
-   fbq('track') inicia o image beacon imediatamente.
-   500ms é suficiente para o beacon ser enviado antes do redirect.
-   Sem this delay, o iOS cancela a requisição pendente. */
+/* ── CHECKOUT — DUAL TRACKING (CAPI + Browser Pixel) ────────────────
+   sendBeacon envia ao servidor Vercel (/api/track) que chama a CAPI.
+   Funciona em iOS, Android, ad blockers — independe do browser.
+   Browser pixel fica como backup para browsers sem bloqueio.
+   _genId garante mesmo event_id nos dois canais → Meta deduplica. */
 function goCheckout(e, url, value, contentName) {
   e.preventDefault();
-  fbq('track', 'InitiateCheckout', {
-    value: value,
-    currency: 'BRL',
-    content_name: contentName
-  });
-  setTimeout(function() {
-    window.location.href = url;
-  }, 500);
+  var icId = _genId('ic');
+  var icData = {value:value, currency:'BRL', content_name:contentName};
+
+  /* 1. CAPI via sendBeacon — garantido mesmo em iOS/ad blocker */
+  sendCAPI('InitiateCheckout', icId, icData);
+
+  /* 2. Browser pixel — backup para browsers sem bloqueio */
+  fbq('track', 'InitiateCheckout', icData, {eventID: icId});
+
+  /* 3. Abre checkout */
+  var win = window.open(url, '_blank', 'noopener');
+  if (!win) {
+    setTimeout(function() { window.location.href = url; }, 300);
+  }
 }
 
 /* ── SCROLL SUAVE para #planos (fallback universal) ─── */
