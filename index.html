@@ -211,13 +211,23 @@ body{font-family:'Barlow',system-ui,-apple-system,sans-serif;color:var(--black);
   padding:8px 22px; border-radius:100px; margin-bottom:24px;
 }
 .bonus-grid{display:grid; grid-template-columns:1fr; gap:12px; max-width:660px; margin:0 auto}
-.bcard{background:white; border-radius:14px; padding:0; overflow:hidden}
+.bcard{
+  background:#13132a;
+  border-radius:14px;
+  padding:0;
+  overflow:hidden;
+  box-shadow:0 0 0 1px rgba(242,209,90,.2), 0 20px 50px rgba(0,102,255,.4);
+  border:none;
+  transition:box-shadow .2s
+}
+.bcard:hover{box-shadow:0 0 0 1px rgba(242,209,90,.35), 0 20px 70px rgba(0,102,255,.6)}
 .bcard-body{padding:16px 18px 18px}
 .bt{
   font-family:'Barlow Condensed',sans-serif; font-weight:800;
   font-size:15px; text-transform:uppercase; margin-bottom:4px;
+  color:white;
 }
-.bd{font-size:13px; color:#666; line-height:1.45}
+.bd{font-size:13px; color:rgba(255,255,255,.55); line-height:1.45}
 .bv{display:inline-block; color:var(--red); font-size:12px; font-weight:700; margin-top:8px}
 
 /* ── 8 — PLANOS ───────────────────────────────────────── */
@@ -1048,9 +1058,9 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
   640 × 360 px (16:9) cada
   ══════════════════════════════════════════════════
 -->
-<section class="s" style="background:var(--gold);text-align:center">
+<section class="s" style="background:#0d0d1a;text-align:center">
   <div class="c">
-    <h2 class="sh">No Plano Completo Você Ainda Ganha</h2>
+    <h2 class="sh" style="color:white">No Plano Completo Você Ainda Ganha</h2>
     <div class="b-badge">🎁 +4 BÔNUS EXCLUSIVOS</div>
     <div class="bonus-grid">
 
