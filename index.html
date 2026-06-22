@@ -585,6 +585,32 @@ body{font-family:'Barlow',system-ui,-apple-system,sans-serif;color:var(--black);
      a seta aponta para a esquerda em vez de para baixo */
   .p-note-arrow{ animation:bounceLeft 1.2s infinite }
 }
+/* ── CARROS GRID ────────────────────────────────── */
+.car-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:28px}
+.car-tag{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  color:white;padding:9px 16px;border-radius:6px;font-size:13px;font-weight:600;letter-spacing:.3px}
+.car-tag:hover{background:rgba(255,200,0,.1);border-color:var(--gold);color:var(--gold)}
+
+/* ── VOCÊ ESTÁ LEVANDO ───────────────────────────── */
+.vc-box{background:var(--black);border:2px solid var(--gold);border-radius:12px;
+  padding:28px 24px;max-width:540px;margin:0 auto 24px}
+.vc-list{list-style:none;margin:0 0 20px;padding:0;text-align:left}
+.vc-list li{color:white;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);
+  font-size:15px;display:flex;align-items:center;gap:10px}
+.vc-list li:last-child{border-bottom:none}
+.vc-total{background:rgba(255,200,0,.08);border-radius:8px;padding:16px;text-align:center;margin-top:4px}
+.vc-from{color:rgba(255,255,255,.45);font-size:13px;text-decoration:line-through}
+.vc-price{color:var(--gold);font-size:36px;font-weight:900;line-height:1}
+
+/* ── AVATARES ────────────────────────────────────── */
+.av-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+@media(max-width:480px){.av-grid{grid-template-columns:1fr}}
+.av-card{background:white;border-radius:10px;padding:18px 16px;
+  border-left:4px solid var(--blue);text-align:left}
+.av-ic{font-size:26px;margin-bottom:8px;display:block}
+.av-title{font-weight:800;font-size:15px;color:var(--black);margin-bottom:4px}
+.av-desc{font-size:13px;color:#666;line-height:1.5}
+
 </style>
 
 <!-- Meta Pixel Code -->
@@ -641,12 +667,12 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
 <section class="hero">
   <div class="c" style="max-width:500px">
 
-    <div class="h-badge">✦ A ATIVIDADE QUE TIRA DAS TELAS</div>
+    <div class="h-badge">✦ +281 ARQUIVOS AUTOMOTIVOS</div>
 
     <h1>
-      Seu Filho Vai Largar<br>
-      <em>O Celular</em>
-      <span class="g">Por Horas.</span>
+      A Maior Coleção<br>
+      <em>de Carros Para</em><br>
+      <span class="g">Imprimir e Colorir.</span>
     </h1>
 
     <!--
@@ -660,9 +686,9 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
       </div>
     </div>
 
-    <p class="h-tag">+101 carros incríveis para imprimir e colorir —<br><strong>offline, sem app, sem mensalidade.</strong></p>
-    <a href="#planos" class="btn-green">🏁 QUERO A COLEÇÃO AGORA</a>
-    <div class="cta-note">⚡ Acesso imediato — em 5 min você já tem atividade pronta</div>
+    <p class="h-tag">101 carros no plano básico ou acesso à coleção completa com 281 arquivos.<br><strong>Acesso imediato · Impressão ilimitada · offline, sem app, sem mensalidade.</strong></p>
+    <a href="#planos" class="btn-green">🔥 QUERO DESBLOQUEAR OS 281 ARQUIVOS</a>
+    <div class="cta-note">⚡ Acesso imediato — link no e-mail e WhatsApp em menos de 5 minutos</div>
 
   </div>
 </section>
@@ -671,9 +697,35 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
 
 <!-- ─── FAST LANE — atalho para lead que já decidiu ─── -->
 <div class="fast-lane">
-  <span class="fast-lane-txt">Já viu o suficiente?</span>
-  <a href="#planos" class="fast-lane-btn">🏁 Ver planos e preços →</a>
+  <span class="fast-lane-txt">Apaixonado por carros? Veja os planos →</span>
+  <a href="#planos" class="fast-lane-btn">🏎️ Ver planos e preços →</a>
 </div>
+
+
+<!-- ─── CARROS QUE VOCÊ VAI ENCONTRAR ────────────────────── -->
+<!--
+  ══════════════════════════════════════════════════
+  MOCKUP_CARROS.jpg — mockup da seção de carros
+  Proporção original do arquivo: ~1280×720px (16:9)
+  ══════════════════════════════════════════════════
+-->
+<section class="s" style="background:var(--black);text-align:center;padding-bottom:32px">
+  <div class="c">
+    <div class="img-slot" style="width:100%;max-width:780px;margin:0 auto 24px;border-radius:12px;overflow:hidden">
+      <img
+        src="MOCKUP_CARROS.jpg"
+        alt="Alguns dos carros que você vai encontrar — Nissan Skyline R34, Toyota Supra MK4, Mazda RX7, Mitsubishi Evo, Honda Civic, Subaru WRX, Ferrari 458, Lamborghini Aventador"
+        width="780"
+        height="439"
+        loading="lazy"
+        decoding="async"
+        style="width:100%;height:auto;display:block"
+      >
+    </div>
+    <a href="#planos" class="btn-gold">🏎️ QUERO MINHA GARAGEM TUNING</a>
+  </div>
+</section>
+
 
 <!-- ─── DOR — SEÇÃO EMOCIONAL ──────────────────────────── -->
 <section class="s" style="background:var(--black);text-align:center">
@@ -798,7 +850,7 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
   </div>
 
   <div class="c" style="text-align:center;margin-top:24px">
-    <a href="#planos" class="btn-green">🏁 QUERO A COLEÇÃO AGORA</a>
+    <a href="#planos" class="btn-green">🏎️ QUERO ACESSAR A COLEÇÃO AGORA</a>
   </div>
 </section>
 
@@ -809,11 +861,11 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
 <section class="s" style="background:var(--cream);padding-top:28px;padding-bottom:28px">
   <div class="c">
     <div class="chips">
-      <div class="chip"><span>📵</span> Menos tempo de tela</div>
-      <div class="chip"><span>🏎️</span> +281 carros automotivos</div>
-      <div class="chip"><span>♾️</span> Impressão ilimitada</div>
-      <div class="chip"><span>⚡</span> Acesso imediato</div>
-      <div class="chip"><span>🔒</span> Pague só uma vez</div>
+      <div class="chip"><span>🏎️</span> +281 arquivos automotivos</div>
+      <div class="chip"><span>🖨️</span> Imprima quantas vezes quiser</div>
+      <div class="chip"><span>👨‍👩‍👦</span> Para crianças e adultos</div>
+      <div class="chip"><span>👨‍👩‍👦</span> Para crianças e adultos</div>
+      <div class="chip"><span>🔒</span> Acesso vitalício</div>
     </div>
   </div>
 </section>
@@ -822,24 +874,24 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
 <!-- ─── 3. O QUE RECEBE ──────────────────────────────── -->
 <section class="s" style="background:white">
   <div class="c">
-    <h2 class="sh">O Que Acontece<br>Depois da Compra</h2>
-    <p class="ss">Em menos de 5 minutos você já tem uma atividade pronta</p>
+    <h2 class="sh">O Que Você Recebe<br>Depois da Compra</h2>
+    <p class="ss">Em menos de 5 minutos você já tem +281 arquivos automotivos na mão</p>
     <div class="rcv-grid">
       <div class="rcv">
-        <div class="rcv-t">Horas Longe Das Telas</div>
-        <p>+100 carros incríveis que prendem a atenção — tardes inteiras de atividade offline sem esforço</p>
+        <div class="rcv-t">Uma Coleção Completa</div>
+        <p>+281 arquivos automotivos em PDF — carros tunados, JDMs, supercarros e pôsteres prontos para imprimir</p>
       </div>
       <div class="rcv">
-        <div class="rcv-t">Atividade Pronta Agora</div>
-        <p>Recebeu? Imprimiu. Em 5 minutos o programa do fim de semana já está resolvido.</p>
+        <div class="rcv-t">Pronto em 5 Minutos</div>
+        <p>Comprou, recebeu o link, abriu o PDF e escolheu o carro. Em 5 minutos já está colorindo.</p>
       </div>
       <div class="rcv">
-        <div class="rcv-t">Nunca Acaba a Novidade</div>
-        <p>Amassou? Errou a cor? É só imprimir de novo — sem custo extra, para sempre.</p>
+        <div class="rcv-t">Impressão Ilimitada</div>
+        <p>Errou a cor? Quer colorir de novo? Imprime. Sem custo extra, sem limite, para sempre.</p>
       </div>
       <div class="rcv">
-        <div class="rcv-t">Momento Real Juntos</div>
-        <p>Sentar do lado, escolher o carro favorito, comentar juntos — isso é o que vira memória.</p>
+        <div class="rcv-t">Para Toda a Família</div>
+        <p>Criança que ama carros, pai colecionador, adulto que relaxa colorindo — a coleção serve pra todo mundo.</p>
       </div>
     </div>
   </div>
@@ -849,13 +901,14 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
 <!-- ─── 4. IDEAL PARA QUEM ───────────────────────────── -->
 <section class="s" style="background:var(--cream)">
   <div class="c">
-    <h2 class="sh">Ideal Para Quem Quer</h2>
+    <h2 class="sh">Ideal Para Quem</h2>
     <ul class="ideal-list">
-      <li>✅ Tirar a criança das telas com algo que ela ame de verdade</li>
-      <li>✅ Ter uma atividade pronta para qualquer momento — fim de semana, viagem, chuva</li>
-      <li>✅ Fazer algo juntos em torno da paixão por carros</li>
-      <li>✅ Um presente diferente que vira programa favorito da semana</li>
-      <li>✅ Impressão ilimitada — sem frete, sem espera, sem custo extra</li>
+      <li>✅ É apaixonado por carros e quer uma coleção automotiva pra colorir</li>
+      <li>✅ Quer um passatempo criativo e relaxante — sozinho ou em família</li>
+      <li>✅ Busca uma atividade offline sem tela para a criança que ama carros</li>
+      <li>✅ Quer fazer algo junto com os filhos em torno da paixão por automóveis</li>
+      <li>✅ Coleciona arte automotiva e quer pôsteres para decorar o espaço</li>
+      <li>✅ Procura um presente criativo para quem é fã de carros — de qualquer idade</li>
     </ul>
   </div>
 </section>
@@ -864,18 +917,18 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
 <!-- ─── POR QUE OS PAIS ESCOLHEM ──────────────────────── -->
 <section class="s" style="background:white">
   <div class="c">
-    <h2 class="sh">Por Que Os Pais Estão<br><span style="color:var(--blue)">Escolhendo Esta Coleção?</span></h2>
-    <p class="ss">A solução que pais de fãs de carros descobriram</p>
+    <h2 class="sh">Por Que Apaixonados por Carros<br><span style="color:var(--blue)">Estão Escolhendo Esta Coleção?</span></h2>
+    <p class="ss">Da criança fã de carros ao adulto que relaxa colorindo</p>
     <ul class="reason-list">
       <li>
         <span class="reason-ic">📵</span>
-        <div><strong>Menos tela — de verdade</strong>
-        <p>Não é proibição. É substituição por algo que a criança ama. Funciona porque parte da paixão dela.</p></div>
+        <div><strong>Hobby real, sem tela</strong>
+        <p>Colorir é uma das atividades mais relaxantes que existem. Para crianças, tira do celular. Para adultos, desestresa após um dia longo.</p></div>
       </li>
       <li>
         <span class="reason-ic">🚗</span>
-        <div><strong>Usa o que ele já ama</strong>
-        <p>Carros não são uma imposição dos pais — são a paixão dele. Você só está alimentando isso de uma forma saudável.</p></div>
+        <div><strong>Parte da paixão por carros</strong>
+        <p>Não é qualquer coleção de colorir — são carros lendários que qualquer entusiasta reconhece e ama.</p></div>
       </li>
       <li>
         <span class="reason-ic">🎨</span>
@@ -889,7 +942,7 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
       </li>
       <li>
         <span class="reason-ic">🎁</span>
-        <div><strong>O presente que não some depois de uma semana</strong>
+        <div><strong>O presente que qualquer fã de carros vai adorar</strong>
         <p>Não é brinquedo que quebra ou jogo que enjoa. São meses de atividade nova toda vez que imprime.</p></div>
       </li>
     </ul>
@@ -963,12 +1016,12 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
       <div class="pf-card">
         <div class="pf-icon">🖨️</div>
         <div class="pf-title">Imprima Sem Limite</div>
-        <p class="pf-desc">Amassou? Errou a cor? A criança quis de novo? Imprime. Quantas vezes quiser.</p>
+        <p class="pf-desc">Amassou? Errou a cor? Quer colorir o mesmo carro diferente? Imprime. Sem limite.</p>
       </div>
       <div class="pf-card">
         <div class="pf-icon">♾️</div>
         <div class="pf-title">Acesso Vitalício</div>
-        <p class="pf-desc">Daqui a 2 anos o arquivo ainda vai estar lá. É seu para sempre, sem depender de nada.</p>
+        <p class="pf-desc">O arquivo é seu para sempre — abra daqui a 2 anos e o Skyline ainda vai estar lá te esperando.</p>
       </div>
       <div class="pf-card">
         <div class="pf-icon">🏁</div>
@@ -983,8 +1036,8 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
 <!-- ─── 6. BLOCO DE REFORÇO ──────────────────────────── -->
 <section class="s" style="background:var(--black);text-align:center">
   <div class="c">
-    <h2 class="rf-t">Menos Tela.<br>Mais Memória.<br><span class="g">Pague Uma Vez.</span></h2>
-    <a href="#planos" class="btn-gold">🏁 QUERO MINHA COLEÇÃO</a>
+    <h2 class="rf-t">Sua Paixão por Carros.<br>Em Formato de Arte.<br><span class="g">Pague Uma Vez.</span></h2>
+    <a href="#planos" class="btn-gold">🏎️ QUERO MINHA GARAGEM TUNING</a>
   </div>
 </section>
 
@@ -1053,6 +1106,33 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
 
 <div class="stripe"></div>
 
+
+<!-- ─── VOCÊ ESTÁ LEVANDO ────────────────────────────── -->
+<section class="s" style="background:var(--black);text-align:center">
+  <div class="c">
+    <h2 class="sh" style="color:white;margin-bottom:20px">Tudo Que Você<br><span style="color:var(--gold)">Está Levando Hoje</span></h2>
+    <div class="vc-box">
+      <ul class="vc-list">
+        <li>✔ <strong>+101 Carros Tunados</strong> para colorir</li>
+        <li>✔ <strong>+50 Supercarros</strong> — Ferrari, Lamborghini, McLaren, Bugatti</li>
+        <li>✔ <strong>+50 Carros JDM</strong> — Skyline, Supra, RX-7, Evo, WRX</li>
+        <li>✔ <strong>+50 Rebaixados Brasil</strong> — cultura automotiva nacional</li>
+        <li>✔ <strong>+30 Pôsteres Automotivos</strong> para decorar</li>
+        <li>✔ <strong>Acesso vitalício</strong> — o arquivo é seu para sempre</li>
+        <li>✔ <strong>Impressão ilimitada</strong> — sem custo extra, sem limite</li>
+        <li>✔ <strong>Download imediato</strong> — link no e-mail e WhatsApp na hora</li>
+      </ul>
+      <div class="vc-total">
+        <div class="vc-from">Valor total individual: R$125+</div>
+        <div style="color:rgba(255,255,255,.5);font-size:13px;margin:4px 0">Hoje disponível por apenas</div>
+        <div class="vc-price">R$27</div>
+      </div>
+    </div>
+    <a href="#planos" class="btn-gold">⚡ QUERO BAIXAR AGORA</a>
+  </div>
+</section>
+
+<div class="stripe"></div>
 
 <!-- ─── 8. OFERTA / PLANOS ───────────────────────────── -->
 <!--
@@ -1128,7 +1208,7 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
       </div>
       <div class="gtxt">
         <h3>Garantia Incondicional de 15 Dias</h3>
-        <p>Se em 15 dias a atividade não prender sua criança, não tirar das telas ou simplesmente não servir — devolvemos 100% do seu dinheiro.</p>
+        <p>Se em 15 dias você não amar a coleção, por qualquer motivo — devolvemos 100% do seu dinheiro.</p>
         <p style="margin-top:8px;font-size:13px;color:#777">Sem pergunta, sem formulário, sem espera. O risco é inteiramente nosso.</p>
       </div>
     </div>
@@ -1160,7 +1240,7 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
       </div>
       <div class="fi">
         <div class="fq" onclick="f(this)">Para qual faixa de idade? <div class="ft">+</div></div>
-        <div class="fa">Crianças de 4 a 10 anos, especialmente apaixonadas por carros.</div>
+        <div class="fa">Para crianças de 4 anos acima e adultos de qualquer idade que amam carros. Temos desde traçados simples para os pequenos até supercarros e JDMs detalhados para os mais velhos.</div>
       </div>
       <div class="fi">
         <div class="fq" onclick="f(this)">Tem garantia? <div class="ft">+</div></div>
@@ -1179,8 +1259,8 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
     <div style="margin-bottom:12px">
       <span class="urglabel">🚨 ÚLTIMA CHANCE — OFERTA SAI DO AR HOJE</span>
     </div>
-    <h2 class="fc-t">+281 Arquivos Automotivos<br><span class="g">Prontos Para Colorir</span></h2>
-    <a href="#planos" class="btn-gold fc-cta">⚡ ACESSAR AGORA</a>
+    <h2 class="fc-t">+281 Arquivos Automotivos<br><span class="g">Prontos Para Imprimir e Colorir</span></h2>
+    <a href="#planos" class="btn-gold fc-cta">🔥 QUERO DESBLOQUEAR AGORA</a>
     <div class="fc-chips">
       <span>⚡ Acesso imediato</span>
       <span>🔒 Pagamento seguro</span>
@@ -1256,7 +1336,8 @@ src="https://www.facebook.com/tr?id=4454501998095926&ev=PageView&noscript=1"
 </div>
 
 <script>
-/* ── FAQ ────────────────────────────────────────────── */
+/* ── FAQ ────────────────────────────────────────── */
+ ────────────────────────────────────────────── */
 function f(el){
   const item=el.parentElement,open=item.classList.contains('open');
   document.querySelectorAll('.fi').forEach(i=>i.classList.remove('open'));
